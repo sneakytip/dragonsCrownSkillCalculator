@@ -1,0 +1,44 @@
+body {
+	background-color: black;
+	color: white;
+}
+
+.calc-container {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.collapsible {
+  color: white;
+  background-color: inherit;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 90%;
+  text-align: left;
+  outline: none;
+  display: inline-block;
+  font-size: 1em;
+}
+
+.collapsible:hover {
+	background-color: red;
+}
+
+.collapsible:after {
+  content: '\002B';
+  font-weight: bold;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.collapsed-content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: inherit;
+}

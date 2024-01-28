@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Dragon's Crown Skills Calculator</title>
+<link rel="stylesheet" href="style.css">
+<script type="text/javascript" src="script.js"></script>
+
+</head>
+
+<body>
+
+<h1>Dragon's Crown Skill Calculator</h1>
+<h2 style="display: inline-block">Instructions</h2>
+<button class="collapsible"></button>
+<div class="collapsed-content">
+	<ol>
+		<li>Select a character class from the drop-down list. This will populate the class and common skills grid.</li>
+		<li>In the skills grid, select any combination of desired skills and skill levels. The available number of skill points will automatically change with your selections.</li>
+	</ol>
+</div>
+
+<div class="calc-container">
+	<div class="characters-selection-body">
+		<label for="characters-list">Your player character: </label>
+	
+		<select	name="characters-list" id="characters-list" onchange="updateSkills()">
+			<option disabled selected value style="display:none"> -- select a character -- </option>
+			<option value="fighter">Fighter</option>
+			<option value="amazon">Amazon</option>
+			<option value="dwarf">Dwarf</option>
+			<option value="elf">Elf</option>
+			<option value="sorceress">Sorceress</option>
+			<option value="wizard">Wizard</option>
+		</select>
+	</div>
+	
+	<div>
+		<span class="skill-points" id="current-skill-points"></span>
+	</div>
+	
+	<div class="skills-grid">
+		<!-- Populate grid body from script -->
+	</div>
+</div>
+
+</body>
+
+</html>
