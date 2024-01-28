@@ -8,6 +8,21 @@ body {
 	margin-bottom: 20px;
 }
 
+.skills-table-container {
+	display: hidden;
+}
+
+.skills-table {
+	color: white;
+	border: none;
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+
+.skills-table tr {
+	padding: 10px 10px 10px 10px;
+}
+
 .collapsible {
   color: white;
   background-color: inherit;
