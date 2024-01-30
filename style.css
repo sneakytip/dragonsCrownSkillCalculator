@@ -9,18 +9,33 @@ body {
 }
 
 .skills-table-container {
-	display: hidden;
+	display: none;
 }
 
 .skills-table {
+	grid-auto-flow: column;
+	grid-template-rows: auto auto;
 	color: white;
 	border: none;
 	margin-top: 16px;
 	margin-bottom: 16px;
 }
 
-.skills-table tr {
+.skills-table thead tr th {
 	padding: 10px 10px 10px 10px;
+}
+
+.skills-table tbody tr td {
+	padding: 10px 10px 10px 10px;
+}
+
+.skills-text-element-next-header {
+	font-style: italic;
+	font-weight: bold;
+	margin-top: 8px;
+	padding-top: 8px;
+	border-top: 2px dashed  white;
+	width: 100%;
 }
 
 .collapsible {

@@ -3,26 +3,28 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
  
 class SkillType {
-	constructor (name,label,categoryGroups) {
+	constructor (name,label,categoryGroup) {
 		this.name = name;
 		this.label = label;
-		this.categoryGroups = categoryGroups;
+		this.categoryGroup = categoryGroup;
 	}
 }
 
 class SkillCategory {
-	constructor (name,skillGroup) {
+	constructor (name,label,skillGroup) {
 		this.name = name;
+		this.label = label;
 		this.skillGroup = skillGroup;
 	}
 }
 
 class Skill {
-	constructor (name,description,category,tierGroup,moreInfo) {
+	constructor (name,label,description,tierGroup,moreInfo) {
 		this.name = name;
+		this.label = label;
 		this.description = description;
-		this.moreInfo = moreInfo;
 		this.tierGroup = tierGroup;
+		this.moreInfo = moreInfo;
 		this.levelMax = tierGroup.length;
 	}
 }
@@ -51,16 +53,14 @@ const skillsCommon = new SkillType(
 	"Common Skills",
 	[
 		new SkillCategory (
-			"Common Skill",
+			"common",
+			"Common",
 			[
 				// Slide Attack //
 				new Skill(
+					"slide",
 					"Slide Attack",
 					"Increased chance of taking enemy down when sliding.",
-					[
-						"The max distance of the slide attack increases as the level of the skill increases.",
-						"The max time of execution does not change with changes to the skill level, thus you will cover further max distances in the same amount of time you would cover the default max distance."
-					],
 					[
 						new SkillTier(
 							1,
@@ -116,7 +116,11 @@ const skillsCommon = new SkillType(
 								"Massive increase to max movement distance."
 							]
 						)
-					]
+					],
+					[
+						"The max distance of the slide attack increases as the level of the skill increases.",
+						"The max time of execution does not change with changes to the skill level, thus you will cover further max distances in the same amount of time you would cover the default max distance."
+					],
 				)
 			]
 		)
@@ -131,13 +135,14 @@ const skillsFighter = new SkillType(
 	"Fighter Skills",
 	[
 		new SkillCategory (
-			"Attack Skill",
+			"attack",
+			"Attack",
 			[
 				// Cyclone Masher //
 				new Skill(
+					"cycloneMasher",
 					"Cyclone Masher",
 					"Increases duration of aerial attacks. Rapidly press \25A0 to activate.",
-					[],
 					[
 						new SkillTier(
 							1,
@@ -183,13 +188,14 @@ const skillsFighter = new SkillType(
 							6,
 							[]
 						)
-					]
+					],
+					[]
 				),
 				// Shockwave //
 				new Skill(
+					"shockwave",
 					"Shockwave",
 					"Send out ripples that creep along the ground. Activate with \21A5 \002B \25A0.",
-					[],
 					[
 						new SkillTier(
 							1,
@@ -235,7 +241,8 @@ const skillsFighter = new SkillType(
 							6,
 							["Vertical reach of shockwaves greatly increased."]
 						)
-					]
+					],
+					[]
 				)
 			]
 		)
@@ -251,10 +258,32 @@ const skillsList = [skillsCommon,skillsFighter];
 function getSkillType(name) {
 	let skillTypeObject = {};
 	
-	skillsList.forEach((element) => {
-		if (element.name === name) {
-			skillTypeObject = element;
+	skillsList.forEach((classObj) => {
+		if (classObj.name === name) {
+			skillTypeObject = classObj;
 		}
 	});
 	return skillTypeObject;
+}
+
+function getSkillTier(className,categoryName,skillName,levelNumber) {
+	skillsList.forEach((classObj) => {
+		if (classObj.name === className) {
+			classObj.categoryGroup.forEach((category) => {
+				if (category.name === categoryName) {
+					category.skillGroup.forEach((skill) => {
+						if (skill.name === skillName) {
+							skill.tierGroup.forEach((tier) => {
+								if (tier.level === levelNumber) {
+									return tier;
+								}
+							});
+						}
+					});
+				}
+			});
+		}
+	});
+	
+	return {};
 }
