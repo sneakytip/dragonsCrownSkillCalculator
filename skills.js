@@ -142,7 +142,7 @@ const skillsFighter = new SkillType(
 				new Skill(
 					"cycloneMasher",
 					"Cyclone Masher",
-					"Increases duration of aerial attacks. Rapidly press \25A0 to activate.",
+					"Increases duration of aerial attacks. Rapidly press " + String.fromCharCode(0x25A0) + " to activate.",
 					[
 						new SkillTier(
 							1,
@@ -195,7 +195,7 @@ const skillsFighter = new SkillType(
 				new Skill(
 					"shockwave",
 					"Shockwave",
-					"Send out ripples that creep along the ground. Activate with \21A5 \002B \25A0.",
+					"Send out ripples that creep along the ground. Activate with " + String.fromCharCode(0x21A5) + " " + String.fromCharCode(0x2B) + " " + String.fromCharCode(0x25A0) + ".",
 					[
 						new SkillTier(
 							1,
@@ -267,6 +267,8 @@ function getSkillType(name) {
 }
 
 function getSkillTier(className,categoryName,skillName,levelNumber) {
+	let targetTier = {};
+	
 	skillsList.forEach((classObj) => {
 		if (classObj.name === className) {
 			classObj.categoryGroup.forEach((category) => {
@@ -275,7 +277,7 @@ function getSkillTier(className,categoryName,skillName,levelNumber) {
 						if (skill.name === skillName) {
 							skill.tierGroup.forEach((tier) => {
 								if (tier.level === levelNumber) {
-									return tier;
+									targetTier = tier;
 								}
 							});
 						}
@@ -285,5 +287,5 @@ function getSkillTier(className,categoryName,skillName,levelNumber) {
 		}
 	});
 	
-	return {};
+	return targetTier;
 }

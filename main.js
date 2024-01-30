@@ -19,6 +19,7 @@ const skillEffectsNextIdSuffix = "-next";
 
 const skillDataIdType = "data-skill-type";
 const skillDataIdCategory = "data-skill-category";
+const skillDataIdCategoryLabel = "data-skill-category-label";
 const skillDataIdSkill = "data-skill-name";
 const skillDataIdTierLevel = "data-skill-tier";
 
@@ -52,56 +53,89 @@ function processSkillTierPropertiesForOutput(property, value, categoryLabel) {
 			else return "";
 			break;
 		case "category":
-			if (value > 0 && (categoryLabel != undefined || categoryLabel != null)) {
+			if (value > 0 && categoryLabel) {
 				return "The " + categoryLabel + " category skill must be LV " + value + ".";
 			}
 			else return "";
-
+			break;
 		default:
 		return "Property value not matched. Check input.";
 	}
 }
 
-function populateSkillTierData(targetCell, targetDescElem, type, category, skillName, tierLevel) {
-	let currentTier = getSkillTier(type, category, skillName, tierLevel);
-	let targetRow = document.getElementById(targetRowId);
-	let effectsElemCurrent = targetRow.querySelectorAll('[' + skillDataElementId + '=' + CSS.escape(skillName + skillEffectsCurrentIdSuffix) + ']');
+function populateSkillDescription(elemCurrent, elemNext, textCurrent, textNext) {
+	elemCurrent.innerText = textCurrent;
+	elemNext.innerText = textNext;
+}
+
+function populateSkillConditions(elemConditionsCurrent, elemConditionsNew, categoryLabel) {
+	let conditionVarNames = ["cost","player","category"];
 	
-	// update current skill level effects and purchase conditions
-	if (currentTier !== {} | currentTier !== null) {
-		let newEffectElem = document.createElement("p");
-		
-		newEffectElem.appendChild(document.createTextNode(currentTier.effect));
-		effectsElemCurrent.parentElement.replaceChild(newEffectElem, effectsElemCurrent);
-	}
-	else {
-		
-	}
-		
-	// update next skill level effects and purchase conditions
-	if (nextTier !== {} | nextTier !== null) {
-		
-	}
-	else {
-		
+	for (let i = 0; i < elemConditionsCurrent.length; i++) {
+		if(conditionVarNames[i] === "category") {
+			elemConditionsCurrent[i].innerText = processSkillTierPropertiesForOutput(conditionVarNames[i],elemConditionsNew[i], categoryLabel);
+		}
+		else elemConditionsCurrent[i].innerText = processSkillTierPropertiesForOutput(conditionVarNames[i],elemConditionsNew[i]);
 	}
 }
 
-function updateSkillLevel(tierLevel) {
-	let cellParent = this.parentElement;
-	let skillRow = cellParent.parentElement;
-	let skillRowChildren = skillRow.children;
-	let descElemCurrent = '';
-	let descElemNext = '';
-	let type = cellParent.getAttribute(skillDataIdType);
-	let category = cellParent.getAttribute(skillDataIdCategory);
-	let skill = cellParent.getAttribute(skillDataIdSkill);
-	let tierLevelNext = Number(tierLevel + 1);
+function updateSkillLevel(inputElement) {
+	let skillRowId = inputElement.getAttribute(skillDataIdSkill);
+	let skillType = inputElement.getAttribute(skillDataIdType);
+	let skillCategory = inputElement.getAttribute(skillDataIdCategory);
+	let skillRow = document.getElementById(skillRowId);
+	let cellDescriptions = {};
+	let cellConditions = {};
+	let tierLevel = Number(inputElement.value);
+	let tierLevelNext = tierLevel + 1;
+	let elemDescCurrent = {};
+	let elemDescNext = {};
+	let tierCurrent = {};
+	let tierNext = {};
+	let elemConditionsCurrent = [,,];
+	let elemConditionsNew = [,,];
 	
-	console.log(skillRowChildren);
-	console.log();
-/* 	populateSkillTierData(cellParent, type, category, skill, tierLevel);
-	populateSkillTierData(cellParent, type, category, skill, tierLevel); */
+	for (const child of skillRow.children) {
+		if (child.getAttribute(skillDataCellId) === skillRowId + skillEffectIdSuffx) {
+			cellDescriptions = child;
+		}
+		else if (child.getAttribute(skillDataCellId) === skillRowId + skillConditionsIdSuffx) {
+			cellConditions = child;
+		}
+	}
+	
+	for (const child of cellDescriptions.children) {
+		if (child.getAttribute(skillDataElementId) === skillRowId + skillEffectsCurrentIdSuffix) {
+			elemDescCurrent = child;
+		}
+		else if (child.getAttribute(skillDataElementId) === skillRowId + skillEffectsNextIdSuffix) {
+			elemDescNext = child;
+		}
+	}
+	
+	for (const child of cellConditions.children) {
+		if (child.getAttribute(skillDataElementId) === skillRowId + skillElemIdSuffixCost) {
+			elemConditionsCurrent[0] = child;
+		}
+		else if (child.getAttribute(skillDataElementId) === skillRowId + skillElemIdSuffixPlayer) {
+			elemConditionsCurrent[1] = child;
+		}
+		else if (child.getAttribute(skillDataElementId) === skillRowId + skillElemIdSuffixCategory) {
+			elemConditionsCurrent[2] = child;
+		}
+	}
+	
+	if (tierLevel > 0) {
+		tierCurrent = getSkillTier(skillType,skillCategory,skillRowId,tierLevel);
+	}
+	else {
+		tierCurrent.effect = "";
+	}
+	tierNext = getSkillTier(skillType,skillCategory,skillRowId,tierLevelNext);
+	elemConditionsNew = [tierNext.cost, tierNext.minLevelPlayer, tierNext.minLevelCategory];
+	
+	populateSkillDescription(elemDescCurrent, elemDescNext, tierCurrent.effect, tierNext.effect);
+	populateSkillConditions(elemConditionsCurrent, elemConditionsNew, inputElement.getAttribute(skillDataIdCategoryLabel));
 }
 
 ///////////////////////////////////////////////
@@ -164,12 +198,14 @@ function populateSkillTable(source, target, headLabelId) {
 			skillLevelInput.setAttribute("onKeyDown","return false");
 			skillLevelInput.setAttribute("min","0");
 			skillLevelInput.setAttribute("max",skill.tierGroup.length.toString());
-			skillLevelInput.setAttribute("onchange","updateSkillLevel(this.getAttribute('value'))");
-			skillLevelCell.setAttribute(skillDataIdType, source.name);
-			skillLevelCell.setAttribute(skillDataIdCategory, category.name);
-			skillLevelCell.setAttribute(skillDataIdSkill, skill.name);
-			skillLevelCell.setAttribute(skillDataIdTierLevel, skillLevelInput.getAttribute("value"));
+			skillLevelInput.setAttribute(skillDataIdType, source.name);
+			skillLevelInput.setAttribute(skillDataIdCategory, category.name);
+			skillLevelInput.setAttribute(skillDataIdCategoryLabel, category.label);
+			skillLevelInput.setAttribute(skillDataIdSkill, skill.name);
 			skillLevelCell.appendChild(skillLevelInput);
+			skillLevelCell.addEventListener("input",function(e) {
+				updateSkillLevel(e.target);
+			});
 			
 			// attributes and children for effects cell
 			skillEffectsCell.setAttribute(skillDataCellId, skill.name + skillEffectIdSuffx);
