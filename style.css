@@ -4,22 +4,53 @@ body {
 	font-family: Menlo, Consolas, Monaco, Lucida Console, monospace;
 }
 
+footer {
+	margin-top: 40px;
+	padding: 16px;
+	background-color: white;
+	color: black;
+	font-size: 0.70em;
+	font-family: sans-serif;
+}
+
 #current-total-points {
 	all: unset;
 	max-width: 2em;
 }
 
-.skill-points-container {
-	margin: 16px 0 16px 0;
+#class-skills-table-label {
+	margin-top: 50px;
 }
 
-.calc-container {
-	margin-top: 20px;
-	margin-bottom: 20px;
+#common-skills-table-label {
+	margin-top: 80px;
+}
+
+.sticky-top {
+	position: -webkit-sticky;
+	position: sticky;
+	padding: 20px 10px 20px 10px;
+	background-color: black;
+	top: 0;
+	border-top: 1px solid gold;
+	border-bottom: 1px solid gold;
+}
+
+.characters-selection-body {
+	padding-bottom: 10px;
+}
+
+.skill-points-container {
+	padding-top: 10px;
+}
+
+.main-section {
+	min-height: 600px;
 }
 
 .skills-table-container {
 	display: none;
+	margin: 20px 0px 20px 0px;
 }
 
 .skills-table {
@@ -42,14 +73,27 @@ body {
 }
 
 .skills-table tbody tr td {
+	max-width: 600px;
 	padding: 10px 10px 10px 10px;
 	white-space: pre-line;
 	border-top: 2px solid gray;
 	border-bottom: 2px solid gray;
 }
 
+.skills-table tbody tr td p {
+	min-height: 1em;
+}
+
 .skills-table tbody tr td input {
 	max-width: 2.5em;
+}
+
+.skills-table-wide-cell {
+	min-width: 20em;
+}
+
+.skills-table-widest-cell {
+	min-width: 35em;
 }
 
 .table-input-non-interactable {
@@ -67,17 +111,17 @@ body {
 }
 
 .collapsible {
-  color: white;
-  background-color: inherit;
-  cursor: pointer;
-  margin-right: 10px;
-  margin-left: 10px;
-  border: none;
-  border-radius: 90%;
-  text-align: left;
-  outline: none;
-  display: inline-block;
-  font-size: 1em;
+	color: white;
+	background-color: inherit;
+	cursor: pointer;
+	margin-right: 10px;
+	margin-left: 10px;
+	border: none;
+	border-radius: 90%;
+	text-align: left;
+	outline: none;
+	display: inline-block;
+	font-size: 1em;
 }
 
 .collapsible:hover {
@@ -85,22 +129,23 @@ body {
 }
 
 .collapsible:after {
-  content: '\002B';
-  font-weight: bold;
+	content: '\002B';
+	font-weight: bold;
 }
 
 .active:after {
-  content: "\2212";
+	content: "\2212";
 }
 
 .collapsed-content {
-  padding: 0 18px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-  background-color: inherit;
+	margin:;
+	padding: 0 18px;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+	background-color: inherit;
 }
 
 .limiter-triggered {
-  color: red;
+	color: red;
 }

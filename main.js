@@ -342,6 +342,7 @@ function populateSkillTable(source, target, headLabelId) {
 			skillConditionsElemCost.setAttribute(skillDataElementId, skill.name + skillElemIdSuffixCost);
 			skillConditionsElemPlayerLevel.setAttribute(skillDataElementId, skill.name + skillElemIdSuffixPlayer);
 			skillConditionsElemCategoryLevel.setAttribute(skillDataElementId, skill.name + skillElemIdSuffixCategory);
+			skillConditionsCell.classList.add("skills-table-wide-cell");
 			skillConditionsElemCost.appendChild(skillConditionsTextCost);
 			skillConditionsElemPlayerLevel.appendChild(skillConditionsTextPlayerLevel);
 			skillConditionsElemCategoryLevel.appendChild(skillConditionsTextCategoryLevel);
@@ -367,6 +368,7 @@ function populateSkillTable(source, target, headLabelId) {
 			skillEffectsElemNextHead.setAttribute("class","skills-text-element-next-header");
 			skillEffectsElemCurrent.setAttribute(skillDataElementId, skill.name + skillEffectsCurrentIdSuffix);
 			skillEffectsElemNextBody.setAttribute(skillDataElementId, skill.name + skillEffectsNextIdSuffix);
+			skillEffectsCell.classList.add("skills-table-widest-cell");
 			skillEffectsElemNextHead.appendChild(skillEffectsElemTextNextHead);
 			skillEffectsElemNextBody.appendChild(skillEffectsElemTextNextBody);
 			skillEffectsElemCurrent.appendChild(skillEffectsElemTextCurrent);
