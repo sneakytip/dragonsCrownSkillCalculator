@@ -390,7 +390,7 @@ const skillsCommon = new SkillType(
 							"Chance that # of uses won't deplete: 20%",
 							1,
 							6,
-							-1,
+							0,
 							[""]
 						),
 						
@@ -399,7 +399,7 @@ const skillsCommon = new SkillType(
 							"Chance that # of uses won't deplete: 25%",
 							1,
 							13,
-							-1,
+							0,
 							[""]
 						),
 						
@@ -443,7 +443,7 @@ const skillsCommon = new SkillType(
 							"Item use cooldown -10%",
 							1,
 							9,
-							-1,
+							0,
 							[""]
 						),
 						
@@ -452,7 +452,7 @@ const skillsCommon = new SkillType(
 							"Item use cooldown -15%",
 							1,
 							16,
-							-1,
+							0,
 							[""]
 						),
 						
@@ -514,7 +514,7 @@ const skillsCommon = new SkillType(
 							"Number of evasions +1",
 							2,
 							12,
-							-1,
+							0,
 							[""]
 						),
 						
@@ -547,27 +547,27 @@ const skillsCommon = new SkillType(
 						new SkillTier(
 							1,
 							"Number of Bag slots: 8",
+							2,
+							15,
 							0,
-							-1,
-							-1,
 							[""]
 						),
 						
 						new SkillTier(
 							2,
 							"Number of Bag slots: 9",
-							0,
-							0,
-							-1,
+							4,
+							30,
+							3,
 							[""]
 						),
 						
 						new SkillTier(
 							3,
 							"Number of Bag slots: 10",
-							0,
-							0,
-							0,
+							6,
+							50,
+							6,
 							[""]
 						)
 					],
@@ -801,7 +801,11 @@ const skillsList = [skillsCommon,skillsFighter];
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Functions
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
- 
+/**
+ * Get a skill type object from the master data set.
+ * @param {string} Text to match against the SkillType property "name" value.
+ * @return {object} The SkillType object.
+ **/
 function getSkillType(name) {
 	let skillTypeObject = {};
 	
@@ -813,6 +817,13 @@ function getSkillType(name) {
 	return skillTypeObject;
 }
 
+/**
+ * Get a skill tier object from the master data set.
+ * @param {string} Text to match against the SkillType property "name" value. 
+ * @param {string} Text to match against the SkillCategory property "name" value. 
+ * @param {string} Text to match against the Skill property "name" value. 
+ * @return {string} A SkillTier object.
+ **/
 function getSkillTier(className,categoryName,skillName,levelNumber) {
 	let targetTier = {};
 	

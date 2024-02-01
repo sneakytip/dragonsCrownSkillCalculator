@@ -1,8 +1,8 @@
 /* * * * * * * * * * *
- * Global Constants  *
+ * Global Constants
  * * * * * * * * * * */
 const characterClassNames = ["Fighter","Amazon","Dwarf","Elf","Sorceress","Wizard"];
-const maxSkillPoints = 155;
+const maxSkillPoints = 5;
 
 // Naming conventions //
 const skillRowDataId = "data-row-id";
@@ -25,16 +25,16 @@ const skillDataIdTierLevel = "data-skill-tier";
 const skillDataIdCategoryLevel = "data-skill-category-level";
 
 /* * * * * * * *
- * Global Vars *
+ * Global Vars
  * * * * * * * */
 let playerSelectionPrevious = '';
 let currentSkillPoints = maxSkillPoints;
 let classSkillTiers = [];
 let commonSkillTiers = [];
 
-/* * * * * * *
- * Functions *
- * * * * * * */
+/* * * * * * * * * *
+ * Main Functions
+ * * * * * * * * * */
 /**
  * Format parameters for UI display.
  * @param {string} Text to match the desired format case.
@@ -89,9 +89,10 @@ function updateTotalCurrentSkillPoints(payment,refund, numberChange) {
 
 /**
  * Reset the input element displaying total points.
+ * @param {num} Default value of 0. A number value used to offset the reset point value.
  **/
-function resetTotalCurrentSkillPoints() {
-	document.getElementById("current-total-points").setAttribute("value",maxSkillPoints);
+function resetTotalCurrentSkillPoints(offset = 0) {
+	document.getElementById("current-total-points").setAttribute("value",maxSkillPoints-offset);
 }
 
 /**
@@ -122,72 +123,79 @@ function populateSkillConditions(elemConditionsCurrent, elemConditionsNew, categ
 }
 
 /**
- * Update the first input element nested within a parent element. 
- * @param {element} The parent element.
+ * Update an input element. 
+ * @param {element} The input element.
  * @param {number} An external value change.
  **/
-function updateCategoryLevel(parentElem, numberChange) {
-	let childElem = parentElem.getElementsByTagName("input")[0];
-	let levelNext = Number(childElem.getAttribute("value")) + numberChange;
+function updateCategoryLevel(inputElem, numberChange) {
+	let levelNext = Number(inputElem.getAttribute("value")) + numberChange;
 	
-	childElem.setAttribute("value", levelNext);
+	inputElem.setAttribute("value", levelNext);
 }
 
+/**
+ * Rollback a value update caused by user change on input element. 
+ * @param {element} The input element.
+ * @param {number} The desired value.
+ **/
+function rollbackInputValue(inputElem, value) {
+	inputElem.value = value;
+	inputElem.setAttribute("value",value);
+}
+
+/**
+ * Return children specified by a data element id value. 
+ * @param {element} The parent element.
+ * @param {string} A string representation of the parent data id.
+ * @param {string} A string representation of the child data id.
+ * @param {string} A string representation of the child data id.
+ * @param {string} A string representation of the child data id.
+ * @return array of elements (max three elements in array).
+ **/
+function getFewerChildrenFromParentChildren(parentElem, parentDataId, childDataId1, childDataId2, childDataId3) {
+	let targetChildren = new Array(3);
+	let filteredChildren = [];
+	
+	for (const child of parentElem.children) {
+		if (child.getAttribute(parentDataId) === childDataId1) {
+			targetChildren[0] = child;
+		}
+		else if (child.getAttribute(parentDataId) === childDataId2) {
+			targetChildren[1] = child;
+		}
+		else if (child.getAttribute(parentDataId) === childDataId3) {
+			targetChildren[2] = child;
+		}
+	}
+	
+	// foreach filters empty array slots
+	targetChildren.forEach((child) => {
+		filteredChildren.push(child);
+	});
+	
+	return filteredChildren;
+}
+
+/**
+ * Change all attributes and UI elements associated with a skill level change event.
+ * @param {element} The input element that fired the event.
+ **/
 function updateSkillLevel(inputElement) {
 	let skillRowId = inputElement.getAttribute(skillDataIdSkill);
 	let skillType = inputElement.getAttribute(skillDataIdType);
 	let skillCategory = inputElement.getAttribute(skillDataIdCategory);
 	let skillLevelMax = Number(inputElement.getAttribute("max"));
 	let skillRow = document.getElementById(skillRowId);
-	let categoryCell = document.getElementById(skillCategory);
-	let cellDescriptions = {};
-	let cellConditions = {};
+	let categoryLevelElem = document.getElementById(skillCategory).getElementsByTagName("input")[0];
+	let skillPointsCurrent = Number(document.getElementById("current-total-points").getAttribute("value"));
 	let tierLevelPrev = Number(inputElement.getAttribute("value"));
 	let tierLevel = Number(inputElement.value);
 	let tierLevelNext = tierLevel + 1;
 	let tierLevelChange = tierLevel - tierLevelPrev;
-	let elemEffectCurrent = {};
-	let elemEffectNext = {};
 	let tierCurrent = {};
 	let tierNext = {};
-	let elemConditionsCurrent = [,,];
-	let elemConditionsNew = [,,];
 	
-	inputElement.setAttribute("value", tierLevel);
-	
-	// Search for the relevant elements to target for UI display updates
-	for (const child of skillRow.children) {
-		if (child.getAttribute(skillDataCellId) === skillRowId + skillEffectIdSuffx) {
-			cellDescriptions = child;
-		}
-		else if (child.getAttribute(skillDataCellId) === skillRowId + skillConditionsIdSuffx) {
-			cellConditions = child;
-		}
-	}
-	
-	// Skill effects
-	for (const child of cellDescriptions.children) {
-		if (child.getAttribute(skillDataElementId) === skillRowId + skillEffectsCurrentIdSuffix) {
-			elemEffectCurrent = child;
-		}
-		else if (child.getAttribute(skillDataElementId) === skillRowId + skillEffectsNextIdSuffix) {
-			elemEffectNext = child;
-		}
-	}
-	
-	// Purchase conditions
-	for (const child of cellConditions.children) {
-		if (child.getAttribute(skillDataElementId) === skillRowId + skillElemIdSuffixCost) {
-			elemConditionsCurrent[0] = child;
-		}
-		else if (child.getAttribute(skillDataElementId) === skillRowId + skillElemIdSuffixPlayer) {
-			elemConditionsCurrent[1] = child;
-		}
-		else if (child.getAttribute(skillDataElementId) === skillRowId + skillElemIdSuffixCategory) {
-			elemConditionsCurrent[2] = child;
-		}
-	}
-	
+	// Prepare relevant data references.
 	if (tierLevel > 0) {
 		tierCurrent = getSkillTier(skillType,skillCategory,skillRowId,tierLevel);
 	}
@@ -204,13 +212,52 @@ function updateSkillLevel(inputElement) {
 	else {
 		tierNext = getSkillTier(skillType,skillCategory,skillRowId,tierLevelNext);
 	}
-	elemConditionsNew = [tierNext.cost, tierNext.minLevelPlayer, tierNext.minLevelCategory];
-	
-	// Update the target elements
-	populateSkillConditions(elemConditionsCurrent, elemConditionsNew, inputElement.getAttribute(skillDataIdCategoryLabel));
-	populateSkillEffects(elemEffectCurrent, elemEffectNext, tierCurrent.effect, tierNext.effect);
-	updateCategoryLevel(categoryCell,tierLevelChange);
-	updateTotalCurrentSkillPoints(Number(tierCurrent.cost),Number(tierNext.cost),tierLevelChange);
+	// Run validity checks
+	if ((tierLevelChange > 0 && skillPointsCurrent >= Number(tierCurrent.cost)) || tierLevelChange < 0) {
+		if (tierLevelChange > 0 && Number(categoryLevelElem.getAttribute("value")) >= Number(tierCurrent.minLevelCategory)) {
+			// Target UI table cell elements
+			let targetCells =
+			getFewerChildrenFromParentChildren(
+			skillRow,
+			skillDataCellId,
+			skillRowId + skillEffectIdSuffx,
+			skillRowId + skillConditionsIdSuffx
+			);
+			// Skill effect elements
+			let elemEffects = 
+			getFewerChildrenFromParentChildren(
+			targetCells[0],
+			skillDataElementId,
+			skillRowId + skillEffectsCurrentIdSuffix,
+			skillRowId + skillEffectsNextIdSuffix
+			);
+			// Purchase conditions elements
+			let elemConditionsCurrent =
+			getFewerChildrenFromParentChildren(
+			targetCells[1],
+			skillDataElementId,
+			skillRowId + skillElemIdSuffixCost,
+			skillRowId + skillElemIdSuffixPlayer,
+			skillRowId + skillElemIdSuffixCategory
+			);
+			let elemConditionsNew = [tierNext.cost, tierNext.minLevelPlayer, tierNext.minLevelCategory];
+			
+			// Update the target elements
+			inputElement.setAttribute("value", tierLevel);
+			populateSkillConditions(elemConditionsCurrent, elemConditionsNew, inputElement.getAttribute(skillDataIdCategoryLabel));
+			populateSkillEffects(elemEffects[0], elemEffects[1], tierCurrent.effect, tierNext.effect);
+			updateCategoryLevel(categoryLevelElem,tierLevelChange);
+			updateTotalCurrentSkillPoints(Number(tierCurrent.cost),Number(tierNext.cost),tierLevelChange);
+		}
+		else {
+			console.log("Category level too low.");
+			rollbackInputValue(inputElement,tierLevelPrev);
+		}
+	}
+	else {
+		console.log("Likely not enough skill points, double-check.");
+		rollbackInputValue(inputElement,tierLevelPrev);
+	}
 }
 
 /**
