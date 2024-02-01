@@ -15,8 +15,8 @@
 <button class="collapsible"></button>
 <div class="collapsed-content">
 	<ol>
-		<li>Select a character class from the drop-down list. This will populate the class and common skills grid.</li>
-		<li>In the skills grid, select any combination of desired skills and skill levels. The available number of skill points will automatically change with your selections.</li>
+		<li>Select a character class from the drop-down list. This will populate the class and common skill grids.</li>
+		<li>In the skill grids, select any combination of desired skills and skill levels by clicking the increment/decrement arrows next to the input box under the <em>Level</em> column. The available number of skill points will automatically change with your selections.</li>
 	</ol>
 </div>
 
@@ -45,8 +45,8 @@
 		</select>
 	</div>
 	
-	<div>
-		<span class="skill-points" id="current-skill-points"></span>
+	<div class="skill-points-container">
+		<label>Current skill points: <input id="current-total-points" value="0" readonly></input></label>
 	</div>
 	
 	<div class="skills-table-container" id="tables-container">

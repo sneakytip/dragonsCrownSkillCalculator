@@ -4,7 +4,7 @@
 const characterClassNames = ["Fighter","Amazon","Dwarf","Elf","Sorceress","Wizard"];
 const maxSkillPoints = 155;
 
-// Naming conventions
+// Naming conventions //
 const skillRowDataId = "data-row-id";
 const skillDataCellId = "data-cell-id";
 const skillDataElementId = "data-elem-id";
@@ -16,12 +16,13 @@ const skillElemIdSuffixPlayer = "-player";
 const skillElemIdSuffixCategory = "-category";
 const skillEffectsCurrentIdSuffix = "-current";
 const skillEffectsNextIdSuffix = "-next";
-
+// More naming conventions //
 const skillDataIdType = "data-skill-type";
 const skillDataIdCategory = "data-skill-category";
 const skillDataIdCategoryLabel = "data-skill-category-label";
 const skillDataIdSkill = "data-skill-name";
 const skillDataIdTierLevel = "data-skill-tier";
+const skillDataIdCategoryLevel = "data-skill-category-level";
 
 /* * * * * * * *
  * Global Vars *
@@ -34,7 +35,14 @@ let commonSkillTiers = [];
 /* * * * * * *
  * Functions *
  * * * * * * */
-function processSkillTierPropertiesForOutput(property, value, categoryLabel) {
+/**
+ * Format parameters for UI display.
+ * @param {string} Text to match the desired format case.
+ * @param {string} A value that is preserved in formatting.
+ * @param {string} Null by default; a text label value that is preserved in formatting.
+ * @return {string}
+ **/
+function processSkillTierPropertiesForOutput(property, value, categoryLabel = null) {
 	switch(property) {
 		case "effect":
 			return "Next: " + value;
@@ -43,9 +51,8 @@ function processSkillTierPropertiesForOutput(property, value, categoryLabel) {
 			if (value > 0) {
 				return "Skill point cost: " + value + " point(s)";
 			}
-			else return "Error: skill must cost at least 1 point."
+			else return "";
 			break;
-		
 		case "player":
 			if (value > 0) {
 				return "Player LV must be at least LV " + value + ".";
@@ -59,42 +66,96 @@ function processSkillTierPropertiesForOutput(property, value, categoryLabel) {
 			else return "";
 			break;
 		default:
-		return "Property value not matched. Check input.";
+		return "";
 	}
 }
 
-function populateSkillDescription(elemCurrent, elemNext, textCurrent, textNext) {
+function resetTableBody(tableBodyId) {
+	
+}
+
+/**
+ * Update the input element displaying total points.
+ * @param {num} A number value to determine subtracted change.
+ * @param {num} A number value to determine additive change.
+ * @param {num} A number value for level change.
+ **/
+function updateTotalCurrentSkillPoints(payment,refund, numberChange) {
+	let pointsElem = document.getElementById("current-total-points");
+	
+	if (numberChange > 0) pointsElem.setAttribute("value", Number(pointsElem.getAttribute("value")) - payment);
+	else pointsElem.setAttribute("value", Number(pointsElem.getAttribute("value")) + refund);
+}
+
+/**
+ * Reset the input element displaying total points.
+ **/
+function resetTotalCurrentSkillPoints() {
+	document.getElementById("current-total-points").setAttribute("value",maxSkillPoints);
+}
+
+/**
+ * Update the input element displaying effect info.
+ * @param {element} The UI element displaying a user's current point investment info.
+ * @param {element} The UI element displaying a user's next investment info.
+ * @param {string} The text value to be used for the current info element's inner text.
+ * @param {string} The text value to be used for the next info element's inner text.
+ **/
+function populateSkillEffects(elemCurrent, elemNext, textCurrent, textNext) {
 	elemCurrent.innerText = textCurrent;
 	elemNext.innerText = textNext;
 }
 
+/**
+ * Update the UI elements showing skill conditions.
+ * @param {element} The element containing current condition text.
+ * @param {array[node]} Array of text nodes containing the new condition text.
+ * @param {attribute} The text value of an element's category label.
+ **/
 function populateSkillConditions(elemConditionsCurrent, elemConditionsNew, categoryLabel) {
 	let conditionVarNames = ["cost","player","category"];
 	
 	for (let i = 0; i < elemConditionsCurrent.length; i++) {
-		if(conditionVarNames[i] === "category") {
-			elemConditionsCurrent[i].innerText = processSkillTierPropertiesForOutput(conditionVarNames[i],elemConditionsNew[i], categoryLabel);
-		}
+		if(conditionVarNames[i] === "category") elemConditionsCurrent[i].innerText = processSkillTierPropertiesForOutput(conditionVarNames[i],elemConditionsNew[i], categoryLabel);
 		else elemConditionsCurrent[i].innerText = processSkillTierPropertiesForOutput(conditionVarNames[i],elemConditionsNew[i]);
 	}
+}
+
+/**
+ * Update the first input element nested within a parent element. 
+ * @param {element} The parent element.
+ * @param {number} An external value change.
+ **/
+function updateCategoryLevel(parentElem, numberChange) {
+	let childElem = parentElem.getElementsByTagName("input")[0];
+	let levelNext = Number(childElem.getAttribute("value")) + numberChange;
+	
+	childElem.setAttribute("value", levelNext);
 }
 
 function updateSkillLevel(inputElement) {
 	let skillRowId = inputElement.getAttribute(skillDataIdSkill);
 	let skillType = inputElement.getAttribute(skillDataIdType);
 	let skillCategory = inputElement.getAttribute(skillDataIdCategory);
+	let skillLevelMax = Number(inputElement.getAttribute("max"));
 	let skillRow = document.getElementById(skillRowId);
+	let categoryCell = document.getElementById(skillCategory);
 	let cellDescriptions = {};
 	let cellConditions = {};
+	let tierLevelPrev = Number(inputElement.getAttribute("value"));
 	let tierLevel = Number(inputElement.value);
 	let tierLevelNext = tierLevel + 1;
-	let elemDescCurrent = {};
-	let elemDescNext = {};
+	let tierLevelChange = tierLevel - tierLevelPrev;
+	let elemEffectCurrent = {};
+	let elemEffectNext = {};
 	let tierCurrent = {};
 	let tierNext = {};
 	let elemConditionsCurrent = [,,];
 	let elemConditionsNew = [,,];
 	
+	inputElement.setAttribute("value", tierLevel);
+	
+	// Search for the relevant elements to target for UI display updates
 	for (const child of skillRow.children) {
 		if (child.getAttribute(skillDataCellId) === skillRowId + skillEffectIdSuffx) {
 			cellDescriptions = child;
@@ -104,15 +165,17 @@ function updateSkillLevel(inputElement) {
 		}
 	}
 	
+	// Skill effects
 	for (const child of cellDescriptions.children) {
 		if (child.getAttribute(skillDataElementId) === skillRowId + skillEffectsCurrentIdSuffix) {
-			elemDescCurrent = child;
+			elemEffectCurrent = child;
 		}
 		else if (child.getAttribute(skillDataElementId) === skillRowId + skillEffectsNextIdSuffix) {
-			elemDescNext = child;
+			elemEffectNext = child;
 		}
 	}
 	
+	// Purchase conditions
 	for (const child of cellConditions.children) {
 		if (child.getAttribute(skillDataElementId) === skillRowId + skillElemIdSuffixCost) {
 			elemConditionsCurrent[0] = child;
@@ -131,11 +194,38 @@ function updateSkillLevel(inputElement) {
 	else {
 		tierCurrent.effect = "";
 	}
-	tierNext = getSkillTier(skillType,skillCategory,skillRowId,tierLevelNext);
+	
+	if (tierLevelNext > skillLevelMax) {
+		tierNext.cost = "";
+		tierNext.minLevelPlayer = "";
+		tierNext.minLevelCategory = "";
+		tierNext.effect = "--";
+	}
+	else {
+		tierNext = getSkillTier(skillType,skillCategory,skillRowId,tierLevelNext);
+	}
 	elemConditionsNew = [tierNext.cost, tierNext.minLevelPlayer, tierNext.minLevelCategory];
 	
-	populateSkillDescription(elemDescCurrent, elemDescNext, tierCurrent.effect, tierNext.effect);
+	// Update the target elements
 	populateSkillConditions(elemConditionsCurrent, elemConditionsNew, inputElement.getAttribute(skillDataIdCategoryLabel));
+	populateSkillEffects(elemEffectCurrent, elemEffectNext, tierCurrent.effect, tierNext.effect);
+	updateCategoryLevel(categoryCell,tierLevelChange);
+	updateTotalCurrentSkillPoints(Number(tierCurrent.cost),Number(tierNext.cost),tierLevelChange);
+}
+
+/**
+ * Dynamic HTML element-child tree builder.
+ * @param {element} elemParent The HTML parent element.
+ * @param {array[elements]} childElemArray An array of elements/nodes which will be put into the cell.
+ * Elements/nodes are appended from array starting from first index.
+ * @return {element} HTML element.
+ **/
+function elementBuilderInnerElements(parentElem, childElemArray) {
+	childElemArray.forEach((child) => {
+		parentElem.appendChild(child);
+	});
+	
+	return parentElem;
 }
 
 ///////////////////////////////////////////////
@@ -152,7 +242,12 @@ function populateSkillTable(source, target, headLabelId) {
 	source.categoryGroup.forEach((category) => {
 		let categoryRowspan = 0;
 		let categoryCell = document.createElement("td");
-		let categoryCellText = document.createTextNode(category.label + " Skill");
+		let categoryElemLabel = document.createElement("p");
+		let categoryElemLevelLabel = document.createElement("label");
+		let categoryElemLevelOutput = document.createElement("input");
+		let categoryTextLabel = document.createTextNode(category.label + " Skill");
+		let categoryTextLevelLabel = document.createTextNode("Current LV: ");
+		let categoryTextLevel = document.createTextNode(0);
 		
 		category.skillGroup.forEach((skill) => {
 			let skillCellTextBodyName = document.createTextNode(skill.label.toString());
@@ -188,15 +283,13 @@ function populateSkillTable(source, target, headLabelId) {
 			skillConditionsElemCost.appendChild(skillConditionsTextCost);
 			skillConditionsElemPlayerLevel.appendChild(skillConditionsTextPlayerLevel);
 			skillConditionsElemCategoryLevel.appendChild(skillConditionsTextCategoryLevel);
-			skillConditionsCell.appendChild(skillConditionsElemCost);
-			skillConditionsCell.appendChild(skillConditionsElemPlayerLevel);
-			skillConditionsCell.appendChild(skillConditionsElemCategoryLevel);
+			elementBuilderInnerElements(skillConditionsCell,[skillConditionsElemCost,skillConditionsElemPlayerLevel,skillConditionsElemCategoryLevel]);
 			
 			// attributes and children for tier level cell
 			skillLevelInput.setAttribute("type","number");
-			skillLevelInput.setAttribute("value","0");
 			skillLevelInput.setAttribute("onKeyDown","return false");
 			skillLevelInput.setAttribute("min","0");
+			skillLevelInput.setAttribute("value","0");
 			skillLevelInput.setAttribute("max",skill.tierGroup.length.toString());
 			skillLevelInput.setAttribute(skillDataIdType, source.name);
 			skillLevelInput.setAttribute(skillDataIdCategory, category.name);
@@ -215,30 +308,33 @@ function populateSkillTable(source, target, headLabelId) {
 			skillEffectsElemNextHead.appendChild(skillEffectsElemTextNextHead);
 			skillEffectsElemNextBody.appendChild(skillEffectsElemTextNextBody);
 			skillEffectsElemCurrent.appendChild(skillEffectsElemTextCurrent);
-			skillEffectsCell.appendChild(skillEffectsElemCurrent);
-			skillEffectsCell.appendChild(skillEffectsElemNextHead);
-			skillEffectsCell.appendChild(skillEffectsElemNextBody);
+			elementBuilderInnerElements(skillEffectsCell,[skillEffectsElemCurrent,skillEffectsElemNextHead,skillEffectsElemNextBody]);
 			
 			// attributes and children for skill name and description cell
 			skillCell.setAttribute(skillDataCellId, skill.name + skillIdSuffx);
 			skillCellElemName.appendChild(skillCellTextElemName);
 			skillCellElemDesc.appendChild(skillCellTextElemDesc);
-			skillCell.appendChild(skillCellElemName);
-			skillCell.appendChild(skillCellElemDesc);
+			elementBuilderInnerElements(skillCell,[skillCellElemName,skillCellElemDesc]);
 			
 			// build row
 			skillRow.setAttribute("id", skill.name);
 			
 			if (categoryRowspan < 1) {
-				categoryCell.appendChild(categoryCellText);
+				// category cell
+				categoryCell.setAttribute("id", category.name);
+				categoryElemLevelOutput.setAttribute("type","number");
+				categoryElemLevelOutput.setAttribute("value","0");
+				categoryElemLevelOutput.setAttribute("min","0");
+				categoryElemLevelOutput.setAttribute("readonly","");
+				categoryElemLevelOutput.setAttribute("class","table-input-non-interactable");
+				categoryElemLevelOutput.appendChild(categoryTextLevel);
+				elementBuilderInnerElements(categoryElemLevelLabel,[categoryTextLevelLabel,categoryElemLevelOutput]);
+				categoryElemLabel.appendChild(categoryTextLabel);
+				elementBuilderInnerElements(categoryCell, [categoryElemLabel,categoryElemLevelLabel,categoryElemLevelOutput]);
 				skillRow.appendChild(categoryCell);
 			}
 			
-			skillRow.appendChild(skillCell);
-			skillRow.appendChild(skillEffectsCell);
-			skillRow.appendChild(skillLevelCell);
-			skillRow.appendChild(skillConditionsCell);
-			
+			elementBuilderInnerElements(skillRow,[skillCell,skillEffectsCell,skillLevelCell,skillConditionsCell]);
 			categoryRowspan++;
 			targetNewBody.appendChild(skillRow);
 		});
@@ -250,10 +346,9 @@ function populateSkillTable(source, target, headLabelId) {
 	targetTableBody.parentNode.replaceChild(targetNewBody, targetTableBody);
 }
 
-function resetTableBody(tableBodyId) {
-	
-}
-
+/**
+ * Initializes the tabe body content and data
+ **/
 function updateSkillsData() {
 	const tablesContainer = document.getElementById('tables-container');
 	const elemClassList = document.getElementById("characters-list");
@@ -285,6 +380,8 @@ function updateSkillsData() {
 		if (tablesContainer.style.display !== "block") {
 			tablesContainer.style.display = "block";
 		}
+		
+		resetTotalCurrentSkillPoints();
 		
 		console.info(skillsClass);
 	}
