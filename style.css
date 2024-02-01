@@ -6,6 +6,7 @@ body {
 
 #current-total-points {
 	all: unset;
+	max-width: 2em;
 }
 
 .skill-points-container {
@@ -47,8 +48,13 @@ body {
 	border-bottom: 2px solid gray;
 }
 
+.skills-table tbody tr td input {
+	max-width: 2.5em;
+}
+
 .table-input-non-interactable {
 	all: unset;
+	max-width: 2em;
 }
 
 .skills-text-element-next-header {
@@ -93,4 +99,8 @@ body {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   background-color: inherit;
+}
+
+.limiter-triggered {
+  color: red;
 }

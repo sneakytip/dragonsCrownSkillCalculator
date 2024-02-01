@@ -2,7 +2,7 @@
  * Global Constants
  * * * * * * * * * * */
 const characterClassNames = ["Fighter","Amazon","Dwarf","Elf","Sorceress","Wizard"];
-const maxSkillPoints = 5;
+const maxSkillPoints = 155;
 
 // Naming conventions //
 const skillRowDataId = "data-row-id";
@@ -21,8 +21,6 @@ const skillDataIdType = "data-skill-type";
 const skillDataIdCategory = "data-skill-category";
 const skillDataIdCategoryLabel = "data-skill-category-label";
 const skillDataIdSkill = "data-skill-name";
-const skillDataIdTierLevel = "data-skill-tier";
-const skillDataIdCategoryLevel = "data-skill-category-level";
 
 /* * * * * * * *
  * Global Vars
@@ -143,6 +141,18 @@ function rollbackInputValue(inputElem, value) {
 	inputElem.setAttribute("value",value);
 }
 
+function limitTrigger(targetElems) {
+	targetElems.forEach((element) => {
+		if (!element.classList.contains("limiter-triggered")) element.classList.add("limiter-triggered");
+	});
+}
+
+function limitTriggerReset(targetElems) {
+	targetElems.forEach((element) => {
+		if (element.classList.contains("limiter-triggered")) element.classList.remove("limiter-triggered");
+	});
+}
+
 /**
  * Return children specified by a data element id value. 
  * @param {element} The parent element.
@@ -187,13 +197,15 @@ function updateSkillLevel(inputElement) {
 	let skillLevelMax = Number(inputElement.getAttribute("max"));
 	let skillRow = document.getElementById(skillRowId);
 	let categoryLevelElem = document.getElementById(skillCategory).getElementsByTagName("input")[0];
-	let skillPointsCurrent = Number(document.getElementById("current-total-points").getAttribute("value"));
+	let skillPointsElem = document.getElementById("current-total-points");
+	let skillPointsCurrent = Number(skillPointsElem.getAttribute("value"));
 	let tierLevelPrev = Number(inputElement.getAttribute("value"));
 	let tierLevel = Number(inputElement.value);
 	let tierLevelNext = tierLevel + 1;
 	let tierLevelChange = tierLevel - tierLevelPrev;
 	let tierCurrent = {};
 	let tierNext = {};
+	let limiterAffectedElems = [skillPointsElem.parentElement,categoryLevelElem.parentElement];
 	
 	// Prepare relevant data references.
 	if (tierLevel > 0) {
@@ -214,7 +226,7 @@ function updateSkillLevel(inputElement) {
 	}
 	// Run validity checks
 	if ((tierLevelChange > 0 && skillPointsCurrent >= Number(tierCurrent.cost)) || tierLevelChange < 0) {
-		if (tierLevelChange > 0 && Number(categoryLevelElem.getAttribute("value")) >= Number(tierCurrent.minLevelCategory)) {
+		if (tierLevelChange > 0 && Number(categoryLevelElem.getAttribute("value")) >= Number(tierCurrent.minLevelCategory) || tierLevelChange < 0) {
 			// Target UI table cell elements
 			let targetCells =
 			getFewerChildrenFromParentChildren(
@@ -248,15 +260,18 @@ function updateSkillLevel(inputElement) {
 			populateSkillEffects(elemEffects[0], elemEffects[1], tierCurrent.effect, tierNext.effect);
 			updateCategoryLevel(categoryLevelElem,tierLevelChange);
 			updateTotalCurrentSkillPoints(Number(tierCurrent.cost),Number(tierNext.cost),tierLevelChange);
+			limitTriggerReset(limiterAffectedElems);
 		}
 		else {
 			console.log("Category level too low.");
-			rollbackInputValue(inputElement,tierLevelPrev);
+			limitTrigger([limiterAffectedElems[1]]);
+			inputElement.value = tierLevelPrev;
 		}
 	}
 	else {
 		console.log("Likely not enough skill points, double-check.");
-		rollbackInputValue(inputElement,tierLevelPrev);
+		limitTrigger([limiterAffectedElems[0]]);
+		inputElement.value = tierLevelPrev;
 	}
 }
 
@@ -289,12 +304,12 @@ function populateSkillTable(source, target, headLabelId) {
 	source.categoryGroup.forEach((category) => {
 		let categoryRowspan = 0;
 		let categoryCell = document.createElement("td");
-		let categoryElemLabel = document.createElement("p");
+		let categoryElemName = document.createElement("p");
+		let categoryElemLevelLabelContainer = document.createElement("form");
 		let categoryElemLevelLabel = document.createElement("label");
 		let categoryElemLevelOutput = document.createElement("input");
-		let categoryTextLabel = document.createTextNode(category.label + " Skill");
+		let categoryTextName = document.createTextNode(category.label + " Skill");
 		let categoryTextLevelLabel = document.createTextNode("Current LV: ");
-		let categoryTextLevel = document.createTextNode(0);
 		
 		category.skillGroup.forEach((skill) => {
 			let skillCellTextBodyName = document.createTextNode(skill.label.toString());
@@ -373,11 +388,11 @@ function populateSkillTable(source, target, headLabelId) {
 				categoryElemLevelOutput.setAttribute("value","0");
 				categoryElemLevelOutput.setAttribute("min","0");
 				categoryElemLevelOutput.setAttribute("readonly","");
-				categoryElemLevelOutput.setAttribute("class","table-input-non-interactable");
-				categoryElemLevelOutput.appendChild(categoryTextLevel);
-				elementBuilderInnerElements(categoryElemLevelLabel,[categoryTextLevelLabel,categoryElemLevelOutput]);
-				categoryElemLabel.appendChild(categoryTextLabel);
-				elementBuilderInnerElements(categoryCell, [categoryElemLabel,categoryElemLevelLabel,categoryElemLevelOutput]);
+				categoryElemLevelOutput.classList.add("table-input-non-interactable");
+				categoryElemLevelLabel.appendChild(categoryTextLevelLabel);
+				categoryElemLevelLabel.appendChild(categoryElemLevelOutput);
+				categoryElemName.appendChild(categoryTextName);
+				elementBuilderInnerElements(categoryCell, [categoryElemName,categoryElemLevelLabel]);
 				skillRow.appendChild(categoryCell);
 			}
 			
