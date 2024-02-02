@@ -1,6 +1,6 @@
 Dragon's Crown Character Skill Calculator
 
-**I. About
+# I. About
 This app is a browser-based tool used to assist players in planning skill builds for the
 various controllable characters in the game Dragon's Crown.
 
@@ -8,7 +8,7 @@ Instructions and information on use is included in the HTML file of the applicat
 Click on the drop-down *+* icon to view them while using the app.
 
 
-**II. License
+# II. License
  Copyright (C) 2024  Carlos Quinto
 
     This program is free software: you can redistribute it and/or modify

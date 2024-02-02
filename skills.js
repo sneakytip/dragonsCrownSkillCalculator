@@ -695,6 +695,165 @@ const skillsFighter = new SkillType(
 						)
 					],
 					[""]
+				),
+				///  ///
+				new Skill(
+					"",
+					"",
+					"",
+					[
+						new SkillTier(
+							1,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"",
+							1,
+							8,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"",
+							0,
+							0,
+							0,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"",
+							0,
+							0,
+							0,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"",
+							0,
+							0,
+							0,
+							[""]
+						)
+					],
+					[""]
+				),
+				///  ///
+				new Skill(
+					"",
+					"",
+					"",
+					[
+						new SkillTier(
+							1,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"",
+							1,
+							8,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"",
+							0,
+							0,
+							0,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"",
+							0,
+							0,
+							0,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"",
+							0,
+							0,
+							0,
+							[""]
+						)
+					],
+					[""]
+				),
+				///  ///
+				new Skill(
+					"",
+					"",
+					"",
+					[
+						new SkillTier(
+							1,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"",
+							1,
+							8,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"",
+							0,
+							0,
+							0,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"",
+							0,
+							0,
+							0,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"",
+							0,
+							0,
+							0,
+							[""]
+						)
+					],
+					[""]
 				)
 			]
 		),

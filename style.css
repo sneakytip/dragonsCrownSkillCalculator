@@ -159,3 +159,7 @@ footer {
 .limiter-triggered {
 	color: red;
 }
+
+.modal {
+	display: none;
+}
