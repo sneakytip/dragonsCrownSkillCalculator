@@ -1,15 +1,16 @@
 body {
+	margin: 0;
 	background-color: black;
 	color: white;
 	font-family: Menlo, Consolas, Monaco, Lucida Console, monospace;
 }
 
 footer {
-	margin-top: 40px;
+	margin: 40px 0 0 0;
 	padding: 16px;
 	background-color: white;
 	color: black;
-	font-size: 0.70em;
+	font-size: 0.68em;
 	font-family: sans-serif;
 }
 
@@ -42,6 +43,15 @@ footer {
 
 .skill-points-container {
 	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.reset-buttons-container {
+	padding-top: 10px;
+}
+
+.reset-button {
+	padding: 5px;
 }
 
 .main-section {
