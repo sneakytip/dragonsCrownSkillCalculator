@@ -316,6 +316,76 @@ function elementBuilderInnerElements(parentElem, childElemArray) {
 }
 
 /**
+ * Reset all table element content..
+ * @param {array[string]} An array of ids attributed to the target HTML table body elements.
+ * @param {array[string]} An array of ids attributed to any HTML table body elements to be adjusted after reset.
+ **/
+function resetTableBody(tableBodyIds, adjustedIds = []) {
+	let totalPointsElement = document.getElementById("current-total-points");
+	
+	for (let id in tableBodyIds) {
+		let targetBody = document.getElementById(tableBodyIds[id]);
+		let targetRows = targetBody.children;
+		let categoryLevelInputs = targetBody.getElementsByClassName(inputNonInteractive);
+		
+		for (let i = 0; i < targetRows.length; i++) {
+			let inputElement = targetRows[i].getElementsByClassName(inputSkillLevel)[0];
+			let rowId = targetRows[i].getAttribute("id");
+			let skillType = inputElement.getAttribute(skillDataIdType);
+			let skillCategory = inputElement.getAttribute(skillDataIdCategory);
+			let skillName = inputElement.getAttribute(skillDataIdSkill)
+			let tierNext = getSkillTier(skillType,skillCategory,skillName,1);
+			// Target UI table cell elements
+			let targetCells =
+			getFewerChildrenFromParentChildren(
+			targetRows[i],
+			skillDataCellId,
+			rowId + skillEffectIdSuffx,
+			rowId + skillConditionsIdSuffx
+			);
+			// Skill effect elements
+			let elemEffects = 
+			getFewerChildrenFromParentChildren(
+			targetCells[0],
+			skillDataElementId,
+			rowId + skillEffectsCurrentIdSuffix,
+			rowId + skillEffectsNextIdSuffix
+			);
+			// Purchase conditions elements
+			let elemConditionsCurrent =
+			getFewerChildrenFromParentChildren(
+			targetCells[1],
+			skillDataElementId,
+			rowId + skillElemIdSuffixCost,
+			rowId + skillElemIdSuffixPlayer,
+			rowId + skillElemIdSuffixCategory
+			);
+			let conditionsNew = [tierNext.cost, tierNext.minLevelPlayer, tierNext.minLevelCategory];
+			
+			// Update the target elements
+			inputElement.setAttribute("value", 0);
+			inputElement.value = 0;
+			populateSkillConditions(elemConditionsCurrent, conditionsNew, inputElement.getAttribute(skillDataIdCategoryLabel));
+			populateSkillEffects(elemEffects[0], elemEffects[1], "", tierNext.effect);
+		}
+		
+		for (let i = 0; i < categoryLevelInputs.length; i++) {
+			categoryLevelInputs[i].setAttribute("value",0);
+			limitTriggerReset([categoryLevelInputs[i].parentElement]);
+		}
+	}
+	
+	if (adjustedIds.length > 0) {
+		
+	}
+	else {
+		resetTotalCurrentSkillPoints();
+	}
+	
+	limitTriggerReset([totalPointsElement.parentElement]);
+}
+
+/**
  * Dynamically populate table elements and content based on passed parameters.
  * @param {object} The object containing the source of table data.
  * @param {element} The target HTML table parent element.
@@ -325,9 +395,8 @@ function populateSkillTable(source, target, headLabelId) {
 	let targetTableBody = document.getElementById(target);
 	let targetNewBody = document.createElement("tbody");
 	let tableHeadLabel = document.getElementById(headLabelId);
-	let tableHeadLabelText = document.createTextNode(source.label);
 	
-	tableHeadLabel.appendChild(tableHeadLabelText);
+	tableHeadLabel.innerText = source.label;
 	
 	source.categoryGroup.forEach((category) => {
 		let categoryRowspan = 0;
@@ -378,6 +447,7 @@ function populateSkillTable(source, target, headLabelId) {
 			
 			// attributes and children for tier level cell
 			skillLevelInput.setAttribute("type","number");
+			skillLevelInput.setAttribute("step","1");
 			skillLevelInput.setAttribute("onKeyDown","return false");
 			skillLevelInput.setAttribute("min","0");
 			skillLevelInput.setAttribute("value","0");
@@ -458,7 +528,6 @@ function updateSkillsData() {
 			let skillsCommon = getSkillType("common");
 			populateSkillTable(skillsCommon, tableCommonBodyId,"common-skills-table-label");
 			tableCommon.setAttribute("data-table-populated", "");
-			console.log(skillsCommon);
 		}
 		else {
 			resetTableBody(["common-skills-table-body"]);
@@ -475,74 +544,4 @@ function updateSkillsData() {
 		resetTotalCurrentSkillPoints();
 		enableResetButtons();
 	}
-}
-
-/**
- * Reset all table element content..
- * @param {array[string]} An array of ids attributed to the target HTML table body elements.
- * @param {array[string]} An array of ids attributed to any HTML table body elements to be adjusted after reset.
- **/
-function resetTableBody(tableBodyIds, adjustedIds = []) {
-	let totalPointsElement = document.getElementById("current-total-points");
-	
-	for (let id in tableBodyIds) {
-		let targetBody = document.getElementById(tableBodyIds[id]);
-		let targetRows = targetBody.children;
-		let categoryLevelInputs = targetBody.getElementsByClassName(inputNonInteractive);
-		
-		for (let i = 0; i < targetRows.length; i++) {
-			let inputElement = targetRows[i].getElementsByClassName(inputSkillLevel)[0];
-			let rowId = targetRows[i].getAttribute("id");
-			let skillType = inputElement.getAttribute(skillDataIdType);
-			let skillCategory = inputElement.getAttribute(skillDataIdCategory);
-			let skillName = inputElement.getAttribute(skillDataIdSkill)
-			let tierNext = getSkillTier(skillType,skillCategory,skillName,1);
-			// Target UI table cell elements
-			let targetCells =
-			getFewerChildrenFromParentChildren(
-			targetRows[i],
-			skillDataCellId,
-			rowId + skillEffectIdSuffx,
-			rowId + skillConditionsIdSuffx
-			);
-			// Skill effect elements
-			let elemEffects = 
-			getFewerChildrenFromParentChildren(
-			targetCells[0],
-			skillDataElementId,
-			rowId + skillEffectsCurrentIdSuffix,
-			rowId + skillEffectsNextIdSuffix
-			);
-			// Purchase conditions elements
-			let elemConditionsCurrent =
-			getFewerChildrenFromParentChildren(
-			targetCells[1],
-			skillDataElementId,
-			rowId + skillElemIdSuffixCost,
-			rowId + skillElemIdSuffixPlayer,
-			rowId + skillElemIdSuffixCategory
-			);
-			let conditionsNew = [tierNext.cost, tierNext.minLevelPlayer, tierNext.minLevelCategory];
-			
-			// Update the target elements
-			inputElement.setAttribute("value", 0);
-			inputElement.value = 0;
-			populateSkillConditions(elemConditionsCurrent, conditionsNew, inputElement.getAttribute(skillDataIdCategoryLabel));
-			populateSkillEffects(elemEffects[0], elemEffects[1], "", tierNext.effect);
-		}
-		
-		for (let i = 0; i < categoryLevelInputs.length; i++) {
-			categoryLevelInputs[i].setAttribute("value",0);
-			limitTriggerReset([categoryLevelInputs[i].parentElement]);
-		}
-	}
-	
-	if (adjustedIds.length > 0) {
-		
-	}
-	else {
-		resetTotalCurrentSkillPoints();
-	}
-	
-	limitTriggerReset([totalPointsElement.parentElement]);
 }

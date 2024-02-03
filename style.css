@@ -1,8 +1,18 @@
+@font-face {
+	font-family: wonderland;
+	src: url(fonts/alice_in_wonderland.ttf);
+}
+
 body {
 	margin: 0;
 	background-color: black;
 	color: white;
-	font-family: Menlo, Consolas, Monaco, Lucida Console, monospace;
+	font-family: Calibri, sans-serif;
+}
+
+h1 {
+	font-family: wonderland;
+	font-size: 4em;
 }
 
 footer {
@@ -84,7 +94,7 @@ footer {
 
 .skills-table tbody tr td {
 	max-width: 600px;
-	padding: 10px 10px 10px 10px;
+	padding: 10px 50px 10px 10px;
 	white-space: pre-line;
 	border-top: 2px solid gray;
 	border-bottom: 2px solid gray;
