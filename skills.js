@@ -4820,15 +4820,15 @@ const skillsWizard = new SkillType(
 			"supplemental",
 			"Supplemental",
 			[
-				/// Mental Absorb ///
+				/// Concentrate ///
 				new Skill(
-					"absorb",
-					"Mental Absorb",
-					"Gain MP with every enemy you defeat.",
+					"concentrate",
+					"Concentrate",
+					"Increase MP charge speed by holding ■.",
 					[
 						new SkillTier(
 							1,
-							"",
+							"MP charge speed +10%",
 							1,
 							-1,
 							-1,
@@ -4837,82 +4837,82 @@ const skillsWizard = new SkillType(
 						
 						new SkillTier(
 							2,
-							"",
+							"MP charge speed +14%",
 							1,
-							-1,
+							6,
 							-1,
 							[""]
 						),
 						
 						new SkillTier(
 							3,
-							"",
+							"MP charge speed +18%",
 							1,
-							-1,
-							-1,
+							11,
+							3,
 							[""]
 						),
 						
 						new SkillTier(
 							4,
-							"",
-							1,
-							-1,
-							-1,
+							"MP charge speed +22%",
+							2,
+							16,
+							3,
 							[""]
 						),
 						
 						new SkillTier(
 							5,
-							"",
-							1,
-							-1,
-							-1,
+							"MP charge speed +26%",
+							2,
+							21,
+							6,
 							[""]
 						),
 						
 						new SkillTier(
 							6,
-							"",
-							1,
-							-1,
-							-1,
+							"MP charge speed +30%",
+							3,
+							27,
+							6,
 							[""]
 						),
 						
 						new SkillTier(
 							7,
-							"",
-							1,
-							-1,
-							-1,
+							"MP charge speed +34%",
+							3,
+							33,
+							9,
 							[""]
 						),
 						
 						new SkillTier(
 							8,
-							"",
-							1,
-							-1,
-							-1,
+							"MP charge speed +38%",
+							4,
+							39,
+							9,
 							[""]
 						),
 						
 						new SkillTier(
 							9,
-							"",
-							1,
-							-1,
-							-1,
+							"MP charge speed +42%",
+							4,
+							45,
+							12,
 							[""]
 						),
 						
 						new SkillTier(
 							10,
-							"",
-							1,
-							-1,
-							-1,
+							"MP charge speed +50%",
+							5,
+							51,
+							12,
 							[""]
 						)
 					]
@@ -4925,7 +4925,7 @@ const skillsWizard = new SkillType(
 					[
 						new SkillTier(
 							1,
-							"",
+							"MP recovered +5",
 							1,
 							-1,
 							-1,
@@ -4934,107 +4934,107 @@ const skillsWizard = new SkillType(
 						
 						new SkillTier(
 							2,
-							"",
+							"MP recovered +7",
 							1,
-							-1,
+							7,
 							-1,
 							[""]
 						),
 						
 						new SkillTier(
 							3,
-							"",
+							"MP recovered +9",
 							1,
-							-1,
-							-1,
+							13,
+							3,
 							[""]
 						),
 						
 						new SkillTier(
 							4,
-							"",
-							1,
-							-1,
-							-1,
+							"MP recovered +11",
+							2,
+							19,
+							3,
 							[""]
 						),
 						
 						new SkillTier(
 							5,
-							"",
-							1,
-							-1,
-							-1,
+							"MP recovered +13",
+							2,
+							26,
+							6,
 							[""]
 						),
 						
 						new SkillTier(
 							6,
-							"",
-							1,
-							-1,
-							-1,
+							"MP recovered +15",
+							3,
+							34,
+							6,
 							[""]
 						),
 						
 						new SkillTier(
 							7,
-							"",
-							1,
-							-1,
-							-1,
+							"MP recovered +20",
+							4,
+							42,
+							9,
 							[""]
 						)
 					]
 				),
-				/// Concentrate ///
+				/// Mental Absorb ///
 				new Skill(
-					"concentrate",
-					"Concentrate",
-					"Increase MP charge speed by holding ■.",
+					"absorb",
+					"Mental Absorb",
+					"Gain MP with every enemy you defeat.",
 					[
 						new SkillTier(
 							1,
-							"",
+							"MP recovered +15",
 							1,
-							-1,
+							4,
 							-1,
 							[""]
 						),
 						
 						new SkillTier(
 							2,
-							"",
+							"MP recovered +18",
 							1,
-							-1,
+							10,
 							-1,
 							[""]
 						),
 						
 						new SkillTier(
 							3,
-							"",
-							1,
-							-1,
-							-1,
+							"MP recovered +21",
+							2,
+							17,
+							3,
 							[""]
 						),
 						
 						new SkillTier(
 							4,
-							"",
-							1,
-							-1,
-							-1,
+							"MP recovered +24",
+							3,
+							25,
+							3,
 							[""]
 						),
 						
 						new SkillTier(
 							5,
-							"",
-							1,
-							-1,
-							-1,
+							"MP recovered +30",
+							5,
+							35,
+							6,
 							[""]
 						)
 					]
@@ -5047,7 +5047,100 @@ const skillsWizard = new SkillType(
 					[
 						new SkillTier(
 							1,
-							"",
+							"Max MP +30",
+							1,
+							9,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"Max MP +50",
+							1,
+							18,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Max MP +70",
+							2,
+							28,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"Max MP +100",
+							3,
+							38,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"Max MP +150",
+							5,
+							49,
+							6,
+							[""]
+						)
+					]
+				),
+				/// Fire Ward ///
+				new Skill(
+					"ward",
+					"Fire Ward",
+					"Spell: Fire Ward - Cast to create a magic circle which grants fire protection.",
+					[
+						new SkillTier(
+							1,
+							"Uses: 3" + spacerLarge + "Duration: 15s" + spacerLarge + "Dealt damage +20%",
+							1,
+							8,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"Uses: 5" + spacerLarge + "Duration: 20s" + spacerLarge + "Dealt damage +35%" + spacerLarge + "Effect range: 150%",
+							3,
+							24,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Uses: 7" + spacerLarge + "Duration: 30s" + spacerLarge + "Dealt damage +50%" + spacerLarge + "Effect range: 200%",
+							5,
+							40,
+							6,
+							[""]
+						)
+					]
+				)
+			]
+		),
+		/// Attack Skills ///
+		new SkillCategory (
+			"attack",
+			"Attack",
+			[
+				/// Blaze ///
+				new Skill(
+					"blaze",
+					"Blaze",
+					"Spell: Blaze - Cast to create long-burning flames.",
+					[
+						new SkillTier(
+							1,
+							"Number of uses: 3" + spacerLarge + "Power: 25",
 							1,
 							-1,
 							-1,
@@ -5056,57 +5149,328 @@ const skillsWizard = new SkillType(
 						
 						new SkillTier(
 							2,
-							"",
+							"Number of uses: 4" + spacerLarge + "Power: 30",
 							1,
-							-1,
+							6,
 							-1,
 							[""]
 						),
 						
 						new SkillTier(
 							3,
-							"",
-							1,
-							-1,
-							-1,
+							"Number of uses: 5" + spacerLarge + "Power: 35",
+							2,
+							12,
+							3,
 							[""]
 						),
 						
 						new SkillTier(
 							4,
-							"",
-							1,
-							-1,
-							-1,
+							"Number of uses: 6" + spacerLarge + "Power: 40",
+							3,
+							20,
+							3,
 							[""]
 						),
 						
 						new SkillTier(
 							5,
-							"",
+							"Number of uses: 9" + spacerLarge + "Power: 50",
+							5,
+							29,
+							6,
+							[""]
+						)
+					]
+				),
+				/// Storm ///
+				new Skill(
+					"storm",
+					"Storm",
+					"Spell: Storm - Cast to summon a tornado which will slash enemies.",
+					[
+						new SkillTier(
+							1,
+							"Number of uses: 3" + spacerLarge + "Power: 10",
 							1,
 							-1,
 							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"Number of uses: 3" + spacerLarge + "Power: 12",
+							1,
+							7,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Number of uses: 4" + spacerLarge + "Power: 14",
+							2,
+							14,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"Number of uses: 4" + spacerLarge + "Power: 16",
+							2,
+							22,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"Number of uses: 5" + spacerLarge + "Power: 18",
+							3,
+							31,
+							6,
+							[""]
+						),
+						
+						new SkillTier(
+							6,
+							"Number of uses: 6" + spacerLarge + "Power: 20",
+							3,
+							41,
+							6,
+							[""]
+						),
+						
+						new SkillTier(
+							7,
+							"Number of uses: 9" + spacerLarge + "Power: 25",
+							5,
+							52,
+							9,
+							[""]
+						)
+					]
+				),
+				/// Flame Burst ///
+				new Skill(
+					"flame",
+					"Flame Burst",
+					"Spell: Flame Burst - Cast to raze everything in front of you.",
+					[
+						new SkillTier(
+							1,
+							"Number of uses: 3" + spacerLarge + "Power: 30",
+							1,
+							3,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"Number of uses: 3" + spacerLarge + "Power: 35",
+							1,
+							9,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Number of uses: 4" + spacerLarge + "Power: 39",
+							2,
+							16,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"Number of uses: 4" + spacerLarge + "Power: 44",
+							2,
+							23,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"Number of uses: 5" + spacerLarge + "Power: 45",
+							3,
+							32,
+							6,
+							[""]
+						),
+						
+						new SkillTier(
+							6,
+							"Number of uses: 6" + spacerLarge + "Power: 50",
+							3,
+							43,
+							6,
+							[""]
+						),
+						
+						new SkillTier(
+							7,
+							"Number of uses: 9" + spacerLarge + "Power: 60",
+							5,
+							56,
+							9,
+							[""]
+						)
+					]
+				),
+				/// Thunderbolt ///
+				new Skill(
+					"thunderbolt",
+					"Thunderbolt",
+					"Spell: Thunderbolt - Cast to summon lightning and stun enemies.",
+					[
+						new SkillTier(
+							1,
+							"Number of uses: 3" + spacerLarge + "Power: 40",
+							1,
+							7,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"Number of uses: 3" + spacerLarge + "Power: 46",
+							1,
+							12,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Number of uses: 3" + spacerLarge + "Power: 52",
+							1,
+							17,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"Number of uses: 4" + spacerLarge + "Power: 58",
+							2,
+							22,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"Number of uses: 4" + spacerLarge + "Power: 64",
+							2,
+							28,
+							6,
+							[""]
+						),
+						
+						new SkillTier(
+							6,
+							"Number of uses: 4" + spacerLarge + "Power: 70",
+							3,
+							34,
+							6,
+							[""]
+						),
+						
+						new SkillTier(
+							7,
+							"Number of uses: 5" + spacerLarge + "Power: 76",
+							3,
+							40,
+							9,
+							[""]
+						),
+						
+						new SkillTier(
+							8,
+							"Number of uses: 5" + spacerLarge + "Power: 82",
+							4,
+							46,
+							9,
+							[""]
+						),
+						
+						new SkillTier(
+							9,
+							"Number of uses: 5" + spacerLarge + "Power: 88",
+							4,
+							53,
+							12,
+							[""]
+						),
+						
+						new SkillTier(
+							10,
+							"Number of uses: 7" + spacerLarge + "Power: 110",
+							5,
+							60,
+							12,
+							[""]
+						)
+					]
+				),
+				/// Meteor Swarm ///
+				new Skill(
+					"meteor",
+					"Meteor Swarm",
+					"Spell: Meteor Swarm - Cast a grand magic that calls down meteors from the heaveans.",
+					[
+						new SkillTier(
+							1,
+							"Number of uses: 3" + spacerLarge + "Power: 1200" + spacerLarge + "No. Meteors: 3",
+							3,
+							15,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"Number of uses: 3" + spacerLarge + "Power: 1350" + spacerLarge + "No. Meteors: 4",
+							4,
+							30,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Number of uses: 3" + spacerLarge + "Power: 1500" + spacerLarge + "No. Meteors: 5",
+							5,
+							50,
+							6,
 							[""]
 						)
 					]
 				)
 			]
 		),
-		///  Skills ///
+		/// Special Skills ///
 		new SkillCategory (
-			"",
-			"",
+			"special",
+			"Special",
 			[
-				///  ///
+				/// Create Wood Golem ///
 				new Skill(
-					"",
-					"",
-					"↥ + ↧ + ■ .",
+					"golem",
+					"Create Wood Golem",
+					"Create golems. (Press ■ near wooden boxes/barrels.)",
 					[
 						new SkillTier(
 							1,
-							"",
+							"Golem's LV: 50% of player LV",
 							1,
 							-1,
 							-1,
@@ -5114,40 +5478,51 @@ const skillsWizard = new SkillType(
 						),
 						
 						new SkillTier(
+							2,
+							"Golem's LV: 60% of player LV, enhance max 1 rank by adding more wood.",
 							1,
-							"",
-							1,
-							-1,
+							8,
 							-1,
 							[""]
 						),
 						
 						new SkillTier(
-							1,
-							"",
-							1,
-							-1,
-							-1,
+							3,
+							"Golem's LV: 70% of player LV, enhance max 2 rank by adding more wood.",
+							2,
+							16,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"Golem's LV: 80% of player LV, enhance max 3 rank by adding more wood.",
+							3,
+							25,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"Golem's LV: 100% of player LV, enhance max 3 rank by adding more wood.",
+							5,
+							36,
+							6,
 							[""]
 						)
 					]
-				)
-			]
-		),
-		///  Skills ///
-		new SkillCategory (
-			"",
-			"",
-			[
-				///  ///
+				),
+				/// Levitation ///
 				new Skill(
-					"",
-					"",
-					"↥ + ↧ + ■ .",
+					"levitation",
+					"Levitation",
+					"Enable floating. (Double jump and press ⨯.)",
 					[
 						new SkillTier(
 							1,
-							"",
+							"Magic Dealt damage +20% while in air",
 							1,
 							-1,
 							-1,
@@ -5155,20 +5530,124 @@ const skillsWizard = new SkillType(
 						),
 						
 						new SkillTier(
-							1,
-							"",
-							1,
-							-1,
+							2,
+							"Magic Dealt damage +35% while in air",
+							3,
+							14,
 							-1,
 							[""]
 						),
 						
 						new SkillTier(
+							3,
+							"Magic Dealt damage +50% while in air",
+							5,
+							29,
+							3,
+							[""]
+						)
+					]
+				),
+				/// Slow ///
+				new Skill(
+					"slow",
+					"Slow",
+					"Spell: Slow - Cast to create a magic circle that slows enemy movements.",
+					[
+						new SkillTier(
 							1,
-							"",
+							"Uses: 4" + spacerLarge + "Speed reduction 60%",
 							1,
+							5,
 							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"Uses: 5" + spacerLarge + "Effect range 105%" + spacerLarge + "Speed reduction 65%",
+							1,
+							11,
 							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Uses: 6" + spacerLarge + "Effect range 110%" + spacerLarge + "Speed reduction 70%",
+							2,
+							18,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"Uses: 7" + spacerLarge + "Effect range 120%" + spacerLarge + "Speed reduction 75%",
+							2,
+							26,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"Uses: 9" + spacerLarge + "Effect range 130%" + spacerLarge + "Speed reduction 85%",
+							4,
+							35,
+							6,
+							[""]
+						)
+					]
+				),
+				/// Extinction ///
+				new Skill(
+					"extinction",
+					"Extinction",
+					"Spell: Extinction - Cast to make one enemy cease to exist. Ineffective on bosses.",
+					[
+						new SkillTier(
+							1,
+							"Number of uses: 3",
+							1,
+							13,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"Number of uses: 4",
+							1,
+							21,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Number of uses: 5",
+							2,
+							30,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"Number of uses: 6",
+							3,
+							39,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"Number of uses: 9",
+							5,
+							48,
+							6,
 							[""]
 						)
 					]
