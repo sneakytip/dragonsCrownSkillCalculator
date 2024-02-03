@@ -3939,20 +3939,20 @@ const skillsSorceress = new SkillType(
 	"sorceress",
 	"Sorceress Skills",
 	[
-		///  Skills ///
+		/// Supplemental Skills ///
 		new SkillCategory (
-			"",
-			"",
+			"supplemental",
+			"Supplemental",
 			[
-				///  ///
+				/// Mental Absorb ///
 				new Skill(
-					"",
-					"",
-					"↥ + ↧ + ■ .",
+					"absorb",
+					"Mental Absorb",
+					"Gain MP with every enemy you defeat.",
 					[
 						new SkillTier(
 							1,
-							"",
+							"MP recovered +15",
 							1,
 							-1,
 							-1,
@@ -3960,8 +3960,96 @@ const skillsSorceress = new SkillType(
 						),
 						
 						new SkillTier(
+							2,
+							"MP recovered +18",
 							1,
-							"",
+							6,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"MP recovered +21",
+							1,
+							11,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"MP recovered +24",
+							2,
+							16,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"MP recovered +27",
+							2,
+							21,
+							6,
+							[""]
+						),
+						
+						new SkillTier(
+							6,
+							"MP recovered +30",
+							3,
+							27,
+							6,
+							[""]
+						),
+						
+						new SkillTier(
+							7,
+							"MP recovered +34",
+							3,
+							33,
+							9,
+							[""]
+						),
+						
+						new SkillTier(
+							8,
+							"MP recovered +38",
+							4,
+							39,
+							9,
+							[""]
+						),
+						
+						new SkillTier(
+							9,
+							"MP recovered +42",
+							4,
+							45,
+							12,
+							[""]
+						),
+						
+						new SkillTier(
+							10,
+							"MP recovered +50",
+							5,
+							51,
+							12,
+							[""]
+						)
+					]
+				),
+				/// Extract ///
+				new Skill(
+					"extract",
+					"Extract",
+					"If your magic shot hits an enemy, you will recover MP. Press ■ for a magic shot.",
+					[
+						new SkillTier(
+							1,
+							"MP recovered +5",
 							1,
 							-1,
 							-1,
@@ -3969,31 +4057,300 @@ const skillsSorceress = new SkillType(
 						),
 						
 						new SkillTier(
+							2,
+							"MP recovered +7",
 							1,
-							"",
+							7,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"MP recovered +9",
+							2,
+							13,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"MP recovered +11",
+							2,
+							19,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"MP recovered +13",
+							3,
+							26,
+							6,
+							[""]
+						),
+						
+						new SkillTier(
+							6,
+							"MP recovered +15",
+							3,
+							34,
+							6,
+							[""]
+						),
+						
+						new SkillTier(
+							7,
+							"MP recovered +20",
+							5,
+							42,
+							9,
+							[""]
+						)
+					]
+				),
+				/// Concentrate ///
+				new Skill(
+					"concentrate",
+					"Concentrate",
+					"Increase MP charge speed by holding ■.",
+					[
+						new SkillTier(
+							1,
+							"MP charge speed +10%",
+							1,
+							4,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"MP charge speed +14%",
+							1,
+							10,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"MP charge speed +18%",
+							2,
+							17,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"MP charge speed +22%",
+							3,
+							25,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"MP charge speed +30%",
+							5,
+							35,
+							6,
+							[""]
+						)
+					]
+				),
+				/// Spirit Up ///
+				new Skill(
+					"spiritUp",
+					"Spirit Up",
+					"Increase maximum MP.",
+					[
+						new SkillTier(
+							1,
+							"Max MP +30",
+							1,
+							9,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"Max MP +50",
+							1,
+							18,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Max MP +70",
+							2,
+							28,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"Max MP +100",
+							3,
+							38,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"Max MP +150",
+							5,
+							49,
+							6,
+							[""]
+						)
+					]
+				),
+				/// Ice Prison ///
+				new Skill(
+					"prison",
+					"Ice Prison",
+					"Spell: Ice Prison - Cast to encase your enemies in ice.",
+					[
+						new SkillTier(
+							1,
+							"Uses: 5" + spacerLarge + "Power: 50" + spacerLarge + "Duration: 8s",
 							1,
 							-1,
 							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"Uses: 7" + spacerLarge + "Power: 63" + spacerLarge + "Duration: 12s",
+							3,
+							14,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Uses: 9" + spacerLarge + "Power: 75" + spacerLarge + "Duration: 20s",
+							5,
+							30,
+							6,
+							[""]
+						)
+					]
+				),
+				/// Protection ///
+				new Skill(
+					"protection",
+					"Protection",
+					"Spell: Protection - Cast to magically shield all your allies.",
+					[
+						new SkillTier(
+							1,
+							"Uses: 3" + spacerLarge + "Duration: 20s" + spacerLarge + "Damage reduction: 25%",
+							1,
+							5,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"Uses: 3" + spacerLarge + "Duration: 24s" + spacerLarge + "Damage reduction: 30%",
+							1,
+							13,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Uses: 4" + spacerLarge + "Duration: 28s" + spacerLarge + "Damage reduction: 35%",
+							2,
+							22,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"Uses: 4" + spacerLarge + "Duration: 32s" + spacerLarge + "Damage reduction: 40%",
+							3,
+							33,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"Uses: 5" + spacerLarge + "Duration: 40s" + spacerLarge + "Damage reduction: 50%",
+							5,
+							45,
+							6,
+							[""]
+						)
+					]
+				),
+				/// Gravity ///
+				new Skill(
+					"gravity",
+					"Gravity",
+					"Spell: Gravity - Cast to create a gravity field that pulls in enemies.",
+					[
+						new SkillTier(
+							1,
+							"Uses: 3" + spacerLarge + "Power: 10",
+							1,
+							11,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"Uses: 5" + spacerLarge + "Power: 16" + spacerLarge + "Increase absorption",
+							3,
+							24,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Uses: 8" + spacerLarge + "Power: 25" + spacerLarge + "Increase absorption",
+							5,
+							40,
+							3,
 							[""]
 						)
 					]
 				)
 			]
 		),
-		///  Skills ///
+		/// Attack Skills ///
 		new SkillCategory (
-			"",
-			"",
+			"attack",
+			"Attack",
 			[
-				///  ///
+				/// Thunderhead ///
 				new Skill(
-					"",
-					"",
-					"↥ + ↧ + ■ .",
+					"thunderhead",
+					"Thunderhead",
+					"Spell: Thunderhead - Cast to summon a small cloud that will attack foes with lightning.",
 					[
 						new SkillTier(
 							1,
-							"",
+							"Uses: 3" + spacerLarge + "Power: 80" + spacerLarge + "Duration: 20s",
 							1,
 							-1,
 							-1,
@@ -4001,40 +4358,198 @@ const skillsSorceress = new SkillType(
 						),
 						
 						new SkillTier(
+							2,
+							"Uses: 3" + spacerLarge + "Power: 92" + spacerLarge + "Duration: 22s",
 							1,
-							"",
-							1,
-							-1,
+							6,
 							-1,
 							[""]
 						),
 						
 						new SkillTier(
+							3,
+							"Uses: 4" + spacerLarge + "Power: 104" + spacerLarge + "Duration: 24s",
+							2,
+							12,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"Uses: 4" + spacerLarge + "Power: 116" + spacerLarge + "Duration: 26s",
+							2,
+							18,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"Uses: 5" + spacerLarge + "Power: 128" + spacerLarge + "Duration: 28s",
+							3,
+							25,
+							6,
+							[""]
+						),
+						
+						new SkillTier(
+							6,
+							"Uses: 5" + spacerLarge + "Power: 140" + spacerLarge + "Duration: 30s",
+							3,
+							32,
+							6,
+							[""]
+						),
+						
+						new SkillTier(
+							7,
+							"Uses: 7" + spacerLarge + "Power: 160" + spacerLarge + "Duration: 32s",
+							5,
+							41,
+							9,
+							[""]
+						)
+					]
+				),
+				/// Rock Press ///
+				new Skill(
+					"rock",
+					"Rock Press",
+					"Spell: Rock Crusher - Cast to create a boulder to crush foes and stun nearby enemies.",
+					[
+						new SkillTier(
 							1,
-							"",
+							"Uses: 5" + spacerLarge + "Power: 350",
 							1,
+							7,
 							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"Uses: 5" + spacerLarge + "Power: 420",
+							1,
+							13,
 							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Uses: 6" + spacerLarge + "Power: 490",
+							2,
+							20,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"Uses: 6" + spacerLarge + "Power: 560",
+							2,
+							27,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"Uses: 7" + spacerLarge + "Power: 665",
+							3,
+							35,
+							6,
+							[""]
+						),
+						
+						new SkillTier(
+							6,
+							"Uses: 7" + spacerLarge + "Power: 770",
+							3,
+							44,
+							6,
+							[""]
+						),
+						
+						new SkillTier(
+							7,
+							"Uses: 9" + spacerLarge + "Power: 875",
+							5,
+							53,
+							9,
+							[""]
+						)
+					]
+				),
+				/// Blizzard ///
+				new Skill(
+					"blizzard",
+					"Blizzard",
+					"Spell: Blizzard - Cast to call forth a blizzard which will freeze enemies.",
+					[
+						new SkillTier(
+							1,
+							"Uses: 3" + spacerLarge + "Power: 35" + spacerLarge + "Duration: 4s",
+							1,
+							14,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"Uses: 3" + spacerLarge + "Power: 40" + spacerLarge + "Duration: 5s",
+							1,
+							23,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Uses: 4" + spacerLarge + "Power: 42" + spacerLarge + "Duration: 6s",
+							2,
+							34,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"Uses: 4" + spacerLarge + "Power: 44" + spacerLarge + "Duration: 7s",
+							3,
+							46,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"Uses: 5" + spacerLarge + "Power: 50" + spacerLarge + "Duration: 10s",
+							5,
+							58,
+							6,
 							[""]
 						)
 					]
 				)
 			]
 		),
-		///  Skills ///
+		/// Special Skills ///
 		new SkillCategory (
-			"",
-			"",
+			"special",
+			"Special",
 			[
-				///  ///
+				/// Animate Skeleton ///
 				new Skill(
-					"",
-					"",
-					"↥ + ↧ + ■ .",
+					"skeleton",
+					"Animate Skeleton",
+					"Create skeletal allies. (Press ■ near bones.)",
 					[
 						new SkillTier(
 							1,
-							"",
+							"Skeleton's LV: 50% of Player LV" + spacerLarge + "Max 1 (Party max is 4)",
 							1,
 							-1,
 							-1,
@@ -4042,8 +4557,51 @@ const skillsSorceress = new SkillType(
 						),
 						
 						new SkillTier(
+							2,
+							"Skeleton's LV: 60% of Player LV" + spacerLarge + "Max 2 (Party max is 4)",
 							1,
-							"",
+							8,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Skeleton's LV: 70% of Player LV" + spacerLarge + "Max 2 (Party max is 4)",
+							2,
+							16,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"Skeleton's LV: 80% of Player LV" + spacerLarge + "Max 3 (Party max is 4)",
+							3,
+							25,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"Skeleton's LV: 100% of Player LV" + spacerLarge + "Max 4 (Party max is 4)",
+							5,
+							36,
+							6,
+							[""]
+						)
+					]
+				),
+				/// Levitation ///
+				new Skill(
+					"levitation",
+					"Levitation",
+					"Enable witch flight. (Double jump and press ⨯.)",
+					[
+						new SkillTier(
+							1,
+							"Magic Dealt damage +20% while in air",
 							1,
 							-1,
 							-1,
@@ -4051,11 +4609,196 @@ const skillsSorceress = new SkillType(
 						),
 						
 						new SkillTier(
-							1,
-							"",
-							1,
+							2,
+							"Magic Dealt damage +35% while in air",
+							3,
+							14,
 							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Magic Dealt damage +50% while in air",
+							5,
+							29,
+							3,
+							[""]
+						)
+					]
+				),
+				/// Create Food ///
+				new Skill(
+					"createFood",
+					"Create Food",
+					"Spell: Create Food - Cast to create nutritious food.",
+					[
+						new SkillTier(
+							1,
+							"Number of uses: 5",
+							1,
+							3,
 							-1,
+							["Create 4 food items"]
+						),
+						
+						new SkillTier(
+							2,
+							"Number of uses: 5",
+							1,
+							9,
+							-1,
+							[
+								"Create 5 food items",
+								"Create 1 random temporary weapon",
+								"Create 1 bone pile if invested in Animate Skeleton"
+							]
+						),
+						
+						new SkillTier(
+							3,
+							"Number of uses: 7",
+							2,
+							17,
+							3,
+							[
+								"Create 6 food items",
+								"Chance of creating food items that restore more HP",
+								"Create 1 random temporary weapon",
+								"Create 2 bone piles if invested in Animate Skeleton"
+							]
+						),
+						
+						new SkillTier(
+							4,
+							"Number of uses: 7",
+							2,
+							26,
+							3,
+							[
+								"Create 7 food items",
+								"Increased chance of creating food items that restore more HP",
+								"Chance of creating food items that restore a great amount of HP",
+								"Create 3 random temporary weapons",
+								"Create 3 bone piles if invested in Animate Skeleton"
+							]
+						),
+						
+						new SkillTier(
+							5,
+							"Number of uses: 9",
+							4,
+							35,
+							6,
+							[
+								"Create 8 food items",
+								"High chance of creating food items that restore more or great amounts of HP",
+								"Create 4 random temporary weapons",
+								"Create 4 bone piles if invested in Animate Skeleton"
+							]
+						)
+					]
+				),
+				/// Curse ///
+				new Skill(
+					"curse",
+					"Curse",
+					"Spell: Curse - Cast to curse your enemies to live as frogs.",
+					[
+						new SkillTier(
+							1,
+							"Number of uses: 5" + spacerLarge + "Range 1",
+							1,
+							6,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"Number of uses: 7" + spacerLarge + "Range 2",
+							3,
+							16,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Number of uses: 9" + spacerLarge + "Range 3",
+							15,
+							31,
+							3,
+							[""]
+						)
+					]
+				),
+				/// Petrification ///
+				new Skill(
+					"petrification",
+					"Petrification",
+					"Spell: Petrification - Cast to turn your enemies to stone.",
+					[
+						new SkillTier(
+							1,
+							"Uses: 3" + spacerLarge + "Duration: 5s",
+							1,
+							15,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"Uses: 3" + spacerLarge + "Duration: 6s",
+							1,
+							22,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"Uses: 4" + spacerLarge + "Duration: 7s",
+							2,
+							29,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"Uses: 4" + spacerLarge + "Duration: 8s",
+							2,
+							36,
+							3,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"Uses: 5" + spacerLarge + "Duration: 9s",
+							3,
+							43,
+							6,
+							[""]
+						),
+						
+						new SkillTier(
+							6,
+							"Uses: 5" + spacerLarge + "Duration: 10s",
+							3,
+							51,
+							6,
+							[""]
+						),
+						
+						new SkillTier(
+							7,
+							"Uses: 7" + spacerLarge + "Duration: 15s",
+							5,
+							60,
+							9,
 							[""]
 						)
 					]
@@ -4072,16 +4815,16 @@ const skillsWizard = new SkillType(
 	"wizard",
 	"Wizard Skills",
 	[
-		///  Skills ///
+		/// Supplemental Skills ///
 		new SkillCategory (
-			"",
-			"",
+			"supplemental",
+			"Supplemental",
 			[
-				///  ///
+				/// Mental Absorb ///
 				new Skill(
-					"",
-					"",
-					"↥ + ↧ + ■ .",
+					"absorb",
+					"Mental Absorb",
+					"Gain MP with every enemy you defeat.",
 					[
 						new SkillTier(
 							1,
@@ -4093,6 +4836,94 @@ const skillsWizard = new SkillType(
 						),
 						
 						new SkillTier(
+							2,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							6,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							7,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							8,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							9,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							10,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						)
+					]
+				),
+				/// Extract ///
+				new Skill(
+					"extract",
+					"Extract",
+					"If your magic shot hits an enemy, you will recover MP. Press ■ for a magic shot.",
+					[
+						new SkillTier(
 							1,
 							"",
 							1,
@@ -4102,7 +4933,156 @@ const skillsWizard = new SkillType(
 						),
 						
 						new SkillTier(
+							2,
+							"",
 							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							6,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							7,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						)
+					]
+				),
+				/// Concentrate ///
+				new Skill(
+					"concentrate",
+					"Concentrate",
+					"Increase MP charge speed by holding ■.",
+					[
+						new SkillTier(
+							1,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						)
+					]
+				),
+				/// Spirit Up ///
+				new Skill(
+					"spiritUp",
+					"Spirit Up",
+					"Increase maximum MP.",
+					[
+						new SkillTier(
+							1,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							2,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							3,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							4,
+							"",
+							1,
+							-1,
+							-1,
+							[""]
+						),
+						
+						new SkillTier(
+							5,
 							"",
 							1,
 							-1,
