@@ -545,7 +545,7 @@ const skillsCommon = new SkillType(
 				),
 				/// Deep Pockets ///
 				new Skill(
-					"deepPockets",
+					"pockets",
 					"Deep Pockets",
 					"Increases the number of item slots in Bags.",
 					[

@@ -376,7 +376,11 @@ function resetTableBody(tableBodyIds, adjustedIds = []) {
 	}
 	
 	if (adjustedIds.length > 0) {
-		
+		for (let id in adjustedIds) {
+			let skillRow = document.getElementById(adjustedIds[id]);
+			
+			console.log(skillRow);
+		}
 	}
 	else {
 		resetTotalCurrentSkillPoints();

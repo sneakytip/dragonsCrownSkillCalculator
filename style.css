@@ -5,6 +5,7 @@
 
 body {
 	margin: 0;
+	padding: 0;
 	background-color: black;
 	color: white;
 	font-family: monospace, monospace;
@@ -26,6 +27,7 @@ footer {
 	color: black;
 	font-size: 0.68em;
 	font-family: sans-serif;
+	width: auto;
 }
 
 #current-total-points {
@@ -45,10 +47,12 @@ footer {
 	position: -webkit-sticky;
 	position: sticky;
 	padding: 20px 10px 20px 10px;
+	margin: 0;
 	background-color: black;
 	top: 0;
 	border-top: 1px solid gold;
 	border-bottom: 1px solid gold;
+	width: auto;
 }
 
 .characters-selection-body {
@@ -66,6 +70,7 @@ footer {
 
 .reset-button {
 	padding: 5px;
+	display: inline-block;
 }
 
 .main-section {
