@@ -92,6 +92,25 @@ function enableResetButtons() {
 }
 
 /**
+ * Calculate total cost of a current level tier.
+ * @param {element} HTML element containing and displaying the skill information.
+ **/
+function calculateCostTotal(inputElement) {
+	let skillType = inputElement.getAttribute(skillDataIdType);
+	let skillCategory = inputElement.getAttribute(skillDataIdCategory);
+	let skillName = inputElement.getAttribute(skillDataIdSkill);
+	let runCost = 0;
+	
+	for (let i = 0; i < Number(inputElement.value); i++) {
+		let tier = getSkillTier(skillType,skillCategory,skillName,(i + 1));
+		
+		runCost += Number(tier.cost);
+	}
+	
+	return runCost;
+}
+
+/**
  * Update the input element displaying total points.
  * @param {num} A number value to determine subtracted change.
  * @param {num} A number value to determine additive change.
@@ -233,6 +252,7 @@ function updateSkillLevel(inputElement) {
 	let tierCurrent = {};
 	let tierNext = {};
 	let limiterAffectedElems = [totalPointsElement.parentElement,categoryLevelElem.parentElement];
+	let runCost = 0;
 	
 	// Prepare relevant data references.
 	if (tierLevel > 0) {
@@ -320,7 +340,7 @@ function elementBuilderInnerElements(parentElem, childElemArray) {
  * @param {array[string]} An array of ids attributed to the target HTML table body elements.
  * @param {array[string]} An array of ids attributed to any HTML table body elements to be adjusted after reset.
  **/
-function resetTableBody(tableBodyIds, adjustedIds = []) {
+function resetTableBody(tableBodyIds, adjustedIds = [], adjustedOffset = []) {
 	let totalPointsElement = document.getElementById("current-total-points");
 	
 	for (let id in tableBodyIds) {
@@ -375,11 +395,17 @@ function resetTableBody(tableBodyIds, adjustedIds = []) {
 		}
 	}
 	
+	// Adjust for any skill exceptions
 	if (adjustedIds.length > 0) {
 		for (let id in adjustedIds) {
 			let skillRow = document.getElementById(adjustedIds[id]);
+			let inputElement = skillRow.getElementsByTagName("input")[0];
 			
-			console.log(skillRow);
+			inputElement.value = adjustedOffset[id];
+			inputElement.setAttribute("value",adjustedOffset[id]);
+			updateSkillLevel(inputElement);
+			
+			resetTotalCurrentSkillPoints(calculateCostTotal(inputElement));
 		}
 	}
 	else {
