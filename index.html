@@ -10,13 +10,15 @@
 
 <body>
 <!-- Reset Modal -->
-<div id="reset-modal" class="modal">
-	<p>Do you want to include "Deep Pockets"</p>
-	<div id="reset-modal-buttons-container" class="modal-buttons-container">
-		<button type="button">Yes</button>
-		<button type="button">No</button>
+<!--div id="reset-modal" class="modal">
+	<div>
+		<p>Do you want to include "Deep Pockets"?</p>
+		<div id="reset-modal-buttons-container" class="modal-buttons-container">
+			<button type="button">Yes</button>
+			<button type="button">No</button>
+		</div>
 	</div>
-</div>
+</div-->
 <!---->
 
 <h1>Dragon's Crown Skill Calculator</h1>
@@ -70,6 +72,12 @@
 		onclick="resetTableBody(['class-skills-table-body', 'common-skills-table-body'])"
 		disabled>
 			Reset Skills
+		</button>
+		<button class="reset-button"
+		type="button"
+		onclick="resetTableBody(['class-skills-table-body', 'common-skills-table-body'],['pockets'],[3])"
+		disabled>
+			Reset Skills & Max Deep Pockets
 		</button>
 	</div>
 </div>

@@ -70,6 +70,7 @@ footer {
 
 .reset-button {
 	padding: 5px;
+	max-width: 150px;
 	display: inline-block;
 }
 
@@ -99,6 +100,7 @@ footer {
 
 .skills-table thead tr th {
 	padding: 10px 10px 10px 10px;
+	text-align: left;
 }
 
 .skills-table tbody tr td {
@@ -135,8 +137,35 @@ footer {
 	font-weight: bold;
 	margin-top: 8px;
 	padding-top: 8px;
-	border-top: 2px dashed  white;
+	border-top: 2px dashed white;
 	width: 100%;
+}
+
+.input-skill-level {
+	all: unset;
+	display: block;
+	width: auto;
+	text-align: center;
+}
+
+.input-subcomponent {
+	min-width: 10px;
+	margin: 0 auto 0 auto;
+	display: block;
+}
+
+.triangle_down {
+	border-left: 0.5em solid transparent;
+	border-right: 0.5em solid transparent;
+	border-top: 0.6em solid black;
+	pointer-events: none;
+}
+
+.triangle_up {
+	border-left: 0.5em solid transparent;
+	border-right: 0.5em solid transparent;
+	border-bottom: 0.6em solid black;
+	pointer-events: none;
 }
 
 .collapsible {
@@ -181,4 +210,17 @@ footer {
 
 .modal {
 	display: none;
+	position: fixed;
+	z-index: 1;
+	width: auto;
+	height: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,4);
+}
+
+.modal-content {
+	border-radius: 30px ;
+	background-color: darkgray;
+	margin: auto;
+	width: 80%;
 }
