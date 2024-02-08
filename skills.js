@@ -5686,7 +5686,7 @@ function getSkillType(name) {
  * @return {string} A SkillTier object.
  **/
 function getSkillTier(className,categoryName,skillName,levelNumber) {
-	let targetTier = {};
+	let targetTier = new SkillTier("","--","","","",[""]);
 	
 	skillsList.forEach((classObj) => {
 		if (classObj.name === className) {
