@@ -10,15 +10,16 @@
 
 <body>
 <!-- Reset Modal -->
-<!--div id="reset-modal" class="modal">
-	<div>
+<div id="reset-modal" class="modal">
+	<div class="modal-content">
 		<p>Do you want to include "Deep Pockets"?</p>
 		<div id="reset-modal-buttons-container" class="modal-buttons-container">
 			<button type="button">Yes</button>
 			<button type="button">No</button>
+			<button type="button">Cancel</button>
 		</div>
 	</div>
-</div-->
+</div>
 <!---->
 
 <h1>Dragon's Crown Skill Calculator</h1>
@@ -67,13 +68,16 @@
 		<label>Current skill points: <input id="current-total-points" value="0" readonly></input></label>
 	</div>
 	<div class="reset-buttons-container">
-		<button class="reset-button"
+		<button
+		id="reset-all-button"
+		class="reset-button"
 		type="button"
-		onclick="resetTableBody(['class-skills-table-body', 'common-skills-table-body'])"
+		onclick="showModalConfirmReset()"
 		disabled>
 			Reset Skills
 		</button>
-		<button class="reset-button"
+		<button
+		class="reset-button"
 		type="button"
 		onclick="resetTableBody(['class-skills-table-body', 'common-skills-table-body'],['pockets'],[3])"
 		disabled>
