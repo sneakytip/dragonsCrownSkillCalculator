@@ -14,9 +14,17 @@
 	<div class="modal-content">
 		<p>Do you want to include "Deep Pockets"?</p>
 		<div id="reset-modal-buttons-container" class="modal-buttons-container">
-			<button type="button">Yes</button>
-			<button type="button">No</button>
-			<button type="button">Cancel</button>
+			<button
+			type="button"
+			onclick="triggerResetWithSkillLevels(['class-skills-table-body', 'common-skills-table-body'],['pockets']),hideModalConfirmReset()"
+			>Yes
+			</button>
+			<button
+			type="button"
+			onclick="resetTableBody(['class-skills-table-body', 'common-skills-table-body']),hideModalConfirmReset()"
+			>No
+			</button>
+			<button type="button" onclick="hideModalConfirmReset()">Cancel</button>
 		</div>
 	</div>
 </div>
@@ -87,7 +95,7 @@
 </div>
 	
 <div class="main-section">
-	<div class="skills-table-container" id="tables-container">
+	<div class="skills-table-container" id="tables-container-class">
 		<h2 id="class-skills-table-label"></h2>
 		<table class="skills-table" id="class-skills-table">
 			<thead>
@@ -102,7 +110,8 @@
 			<tbody id="class-skills-table-body">
 			</tbody>
 		</table>
-		
+	</div>
+	<div class="skills-table-container" id="tables-container-common">
 		<h2 id="common-skills-table-label"></h2>
 		<table class="skills-table" id="common-skills-table">
 			<thead>

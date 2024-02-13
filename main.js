@@ -28,6 +28,7 @@ const skillDataIdSkill = "data-skill-name";
 const inputNonInteractive = "table-input-non-interactable";
 const inputSkillLevel = "input-skill-level"
 const skillLevelComponents = "input-subcomponent";
+const tableContainerClass = "skills-table-container";
 
 /* * * * * * * *
  * Global Vars
@@ -431,6 +432,17 @@ function resetTableBody(tableBodyIds, adjustedIds = [], adjustedOffset = [0]) {
 }
 
 /**
+ * Prep reset skill preservations.
+ * @param {array[string]} An array of ids attributed to the target HTML table body elements.
+ * @param {array[string]} An array of ids attributed to any HTML table body elements to be adjusted after reset.
+ **/
+function triggerResetWithSkillLevels(tableBodyIds, adjustedIds) {
+	let adjustedOffsets = [];
+	
+	
+}
+
+/**
  * Dynamically populate table elements and content based on passed parameters.
  * @param {object} The object containing the source of table data.
  * @param {element} The target HTML table parent element.
@@ -574,9 +586,16 @@ function populateSkillTable(source, target, headLabelId) {
  * Initializes the tabe body content and data
  **/
 function updateSkillsData() {
-	const tablesContainer = document.getElementById('tables-container');
 	const elemClassList = document.getElementById("characters-list");
+	let tableContainers = document.getElementsByClassName(tableContainerClass);
+	let cssContainerObj = [];
+	let cssContainerDisplay = [];
 	let selectionCurr = elemClassList.value;
+	
+	for (let i = 0; i < tableContainers; i++) {
+		cssContainerObj.push(window.getComputedStyle(tableContainers[i]));
+		cssContainerDisplay.push(cssContainerObj[i].getPropertyValue("display"));
+	}
 	
 	if (selectionCurr !== playerSelectionPrevious) {
 		let tableCommon = document.getElementById("common-skills-table");
@@ -598,8 +617,10 @@ function updateSkillsData() {
 		populateSkillTable(skillsClass, tableClassBodyId,"class-skills-table-label");
 		tableClass.setAttribute("data-table-populated", "");
 		
-		if (tablesContainer.style.display !== "block") {
-			tablesContainer.style.display = "block";
+		for (let i = 0; i < tableContainers.length; i++) {
+			if (cssContainerDisplay !== "block") {
+				tableContainers[i].style.display = "block";
+			}
 		}
 		
 		resetTotalCurrentSkillPoints();
