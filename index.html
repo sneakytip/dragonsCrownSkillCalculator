@@ -10,15 +10,27 @@
 
 <body>
 <!-- Reset Modal -->
-<!--div id="reset-modal" class="modal">
-	<div>
-		<p>Do you want to include "Deep Pockets"?</p>
+<div id="reset-modal" class="modal">
+	<div class="modal-content">
+		<p style="text-align: center">Reset Skills and regain Skill points.</p>
+		<p style="text-align: center">Do you wish to include "Deep Pockets" when resetting?</p>
 		<div id="reset-modal-buttons-container" class="modal-buttons-container">
-			<button type="button">Yes</button>
-			<button type="button">No</button>
+			<button
+			class="modal-button"
+			type="button"
+			onclick="resetTableBody(['class-skills-table-body', 'common-skills-table-body']),hideModalConfirmReset()"
+			>Yes
+			</button>
+			<button
+			class="modal-button"
+			type="button"
+			onclick="resetTableBody(['class-skills-table-body', 'common-skills-table-body'],['pockets']),hideModalConfirmReset()"
+			>No
+			</button>
+			<button class="modal-button-wide" type="button" onclick="hideModalConfirmReset()">Cancel</button>
 		</div>
 	</div>
-</div-->
+</div>
 <!---->
 
 <h1>Dragon's Crown Skill Calculator</h1>
@@ -67,13 +79,16 @@
 		<label>Current skill points: <input id="current-total-points" value="0" readonly></input></label>
 	</div>
 	<div class="reset-buttons-container">
-		<button class="reset-button"
+		<button
+		id="reset-all-button"
+		class="reset-button"
 		type="button"
-		onclick="resetTableBody(['class-skills-table-body', 'common-skills-table-body'])"
+		onclick="showModalConfirmReset()"
 		disabled>
 			Reset Skills
 		</button>
-		<button class="reset-button"
+		<button
+		class="reset-button"
 		type="button"
 		onclick="resetTableBody(['class-skills-table-body', 'common-skills-table-body'],['pockets'],[3])"
 		disabled>
@@ -83,7 +98,7 @@
 </div>
 	
 <div class="main-section">
-	<div class="skills-table-container" id="tables-container">
+	<div class="skills-table-container" id="tables-container-class">
 		<h2 id="class-skills-table-label"></h2>
 		<table class="skills-table" id="class-skills-table">
 			<thead>
@@ -98,7 +113,8 @@
 			<tbody id="class-skills-table-body">
 			</tbody>
 		</table>
-		
+	</div>
+	<div class="skills-table-container" id="tables-container-common">
 		<h2 id="common-skills-table-label"></h2>
 		<table class="skills-table" id="common-skills-table">
 			<thead>
