@@ -348,7 +348,7 @@ function elementBuilderInnerElements(parentElem, childElemArray) {
  * @param {array[string]} An array of ids attributed to the target HTML table body elements.
  * @param {array[string]} An array of ids attributed to any HTML table body elements to be adjusted after reset.
  **/
-function resetTableBody(tableBodyIds, adjustedIds = [], adjustedOffset = [0]) {
+function resetTableBody(tableBodyIds, adjustedIds = [], adjustedOffset = []) {
 	let totalPointsElement = document.getElementById("current-total-points");
 	let adjustedInputElements = [];
 	let adjustedCategoryElements = [];
@@ -363,7 +363,7 @@ function resetTableBody(tableBodyIds, adjustedIds = [], adjustedOffset = [0]) {
 		let totalCategoryOffset = 0;
 		
 		for (let i = 0; i < categoryLevelInputs.length; i++) {
-			categoryInputParents.push(categoryLevelInputs[i]);
+			categoryInputParents.push(categoryLevelInputs[i].parentElement);
 			categoryLevelInputs[i].setAttribute("value", 0);
 		}
 		
@@ -380,6 +380,8 @@ function resetTableBody(tableBodyIds, adjustedIds = [], adjustedOffset = [0]) {
 			// Adjust for any skill exceptions
 			if (adjustedIds.length > 0 && adjustedIds.includes(rowId)) {
 				let index = adjustedIds.indexOf(rowId);
+				
+				if (adjustedOffset.length < 1) adjustedOffset.push(Number(inputElement.getAttribute("value")));
 				
 				tierCurrent = getSkillTier(skillType,skillCategory,rowId,Number(adjustedOffset[index]));
 				tierNext = getSkillTier(skillType,skillCategory,skillName,Number(adjustedOffset[index]) + 1);
@@ -423,23 +425,12 @@ function resetTableBody(tableBodyIds, adjustedIds = [], adjustedOffset = [0]) {
 			populateSkillConditions(elemConditionsCurrent, conditionsNew, inputElement.getAttribute(skillDataIdCategoryLabel));
 			populateSkillEffects(elemEffects[0], elemEffects[1], tierCurrent.effect, tierNext.effect);
 		}
-
+		
 		limitTriggerReset(categoryInputParents);
 	}
 	
 	resetTotalCurrentSkillPoints(totalOffset);
 	limitTriggerReset([totalPointsElement.parentElement]);
-}
-
-/**
- * Prep reset skill preservations.
- * @param {array[string]} An array of ids attributed to the target HTML table body elements.
- * @param {array[string]} An array of ids attributed to any HTML table body elements to be adjusted after reset.
- **/
-function triggerResetWithSkillLevels(tableBodyIds, adjustedIds) {
-	let adjustedOffsets = [];
-	
-	
 }
 
 /**

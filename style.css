@@ -221,7 +221,22 @@ footer {
 }
 
 .modal-buttons-container {
+	padding-top: 40px;
 	text-align: center;
+}
+
+.modal-button {
+	width: 4em;
+	height: 3em;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.modal-button-wide {
+	width: 6em;
+	height: 3em;
+	text-align: center;
+	margin: 0 auto;
 }
 
 .modal-content {
@@ -231,3 +246,16 @@ footer {
 	width: fit-content;
 	padding: 15px 15px 25px 15px;
 }
+
+/* .diamond {
+   -webkit-transform: rotate(-45deg);
+   -moz-transform: rotate(-45deg);
+   -ms-transform: rotate(-45deg);
+   -o-transform: rotate(-45deg);
+   transform: rotate(-45deg);
+   -webkit-transform-origin: 0 100%;
+   -moz-transform-origin: 0 100%;
+   -ms-transform-origin: 0 100%;
+   -o-transform-origin: 0 100%;
+   transform-origin: 0 100%;
+} */

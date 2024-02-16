@@ -12,19 +12,22 @@
 <!-- Reset Modal -->
 <div id="reset-modal" class="modal">
 	<div class="modal-content">
-		<p>Do you want to include "Deep Pockets"?</p>
+		<p style="text-align: center">Reset Skills and regain Skill points.</p>
+		<p style="text-align: center">Do you wish to include "Deep Pockets" when resetting?</p>
 		<div id="reset-modal-buttons-container" class="modal-buttons-container">
 			<button
+			class="modal-button"
 			type="button"
-			onclick="triggerResetWithSkillLevels(['class-skills-table-body', 'common-skills-table-body'],['pockets']),hideModalConfirmReset()"
+			onclick="resetTableBody(['class-skills-table-body', 'common-skills-table-body']),hideModalConfirmReset()"
 			>Yes
 			</button>
 			<button
+			class="modal-button"
 			type="button"
-			onclick="resetTableBody(['class-skills-table-body', 'common-skills-table-body']),hideModalConfirmReset()"
+			onclick="resetTableBody(['class-skills-table-body', 'common-skills-table-body'],['pockets']),hideModalConfirmReset()"
 			>No
 			</button>
-			<button type="button" onclick="hideModalConfirmReset()">Cancel</button>
+			<button class="modal-button-wide" type="button" onclick="hideModalConfirmReset()">Cancel</button>
 		</div>
 	</div>
 </div>
