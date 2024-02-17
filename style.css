@@ -68,13 +68,13 @@ footer {
 
 .skill-points-container {
 	margin: auto;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 1em;
+	padding-bottom: 1em;
 	width: fit-content
 }
 
 .reset-buttons-container {
-	padding: 10px 0 0 0;
+	padding: 5px 0 0 0;
 	margin: auto;
 	max-width: 400px;
 	display: flex;
@@ -100,11 +100,11 @@ footer {
 }
 
 .table-head-label {
-	width: fit-content;
 	margin: auto;
 	padding: 2em 10%;
 	color: khaki;
 	border: 2px groove darkkhaki;
+	text-align: center;
 }
 
 .skills-table {
