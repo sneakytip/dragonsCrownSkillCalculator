@@ -5,7 +5,7 @@
 
 body {
 	margin: 0;
-	padding: 0;
+	padding: 1% 1% 0 1%;
 	background-color: black;
 	color: white;
 	font-family: monospace, monospace;
@@ -20,6 +20,13 @@ article {
 	padding-bottom: 40px;
 }
 
+section {
+	margin: auto;
+	width: 75%;
+	max-width: 1200px;
+	overflow: hidden;
+}
+
 footer {
 	margin: 40px 0 0 0;
 	padding: 16px;
@@ -27,7 +34,6 @@ footer {
 	color: black;
 	font-size: 0.68em;
 	font-family: sans-serif;
-	width: auto;
 }
 
 #current-total-points {
@@ -46,42 +52,59 @@ footer {
 .sticky-top {
 	position: -webkit-sticky;
 	position: sticky;
-	padding: 20px 10px 20px 10px;
+	padding: 20px 40px;
 	margin: 0;
 	background-color: black;
 	top: 0;
-	border-top: 1px solid gold;
-	border-bottom: 1px solid gold;
-	width: auto;
+	border-top: 1px solid darkkhaki;
+	border-bottom: 1px solid darkkhaki;
 }
 
 .characters-selection-body {
+	margin: auto;
 	padding-bottom: 10px;
+	width: fit-content;
 }
 
 .skill-points-container {
+	margin: auto;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	width: fit-content
 }
 
 .reset-buttons-container {
-	padding-top: 10px;
+	padding: 10px 0 0 0;
+	margin: auto;
+	max-width: 400px;
+	display: flex;
 }
 
 .reset-button {
-	padding: 5px;
+	margin: auto;
+	padding: 1em;
 	max-width: 150px;
+	height: 5em;
 	display: inline-block;
 }
 
 .main-section {
 	min-height: 600px;
+	margin: 20px 0;
 }
 
 .skills-table-container {
 	display: none;
-	margin: 20px 0px 20px 0px;
+	margin: auto;
 	overflow: auto;
+}
+
+.table-head-label {
+	width: fit-content;
+	margin: auto;
+	padding: 2em 10%;
+	color: khaki;
+	border: 2px groove darkkhaki;
 }
 
 .skills-table {
@@ -91,8 +114,7 @@ footer {
 	border: none;
 	border-collapse: collapse;
 	border-spacing: 10px, 0px;
-	margin-top: 16px;
-	margin-bottom: 16px;
+	margin: 16px auto;
 }
 
 .skills-table thead {
