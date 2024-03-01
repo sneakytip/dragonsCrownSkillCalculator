@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<title>Dragon's Crown Skills Calculator</title>
-<link rel="stylesheet" href="style.css">
-<script type="text/javascript" src="script.js"></script>
-
+	<title>Dragon's Crown Skills Calculator</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="script.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -64,7 +63,7 @@
 	<div class="characters-selection-body">
 		<label for="characters-list">Your player character: </label>
 	
-		<select	name="characters-list" id="characters-list" onchange="updateSkillsData()">
+		<select	name="characters-list" id="characters-list" autocomplete="off" onchange="updateSkillsData()">
 			<option disabled selected value style="display:none"> -- select a character -- </option>
 			<option value="fighter">Fighter</option>
 			<option value="amazon">Amazon</option>
@@ -87,6 +86,7 @@
 		disabled>
 			Reset Skills
 		</button>
+		<div class="reset-buttons-container-spacer"></div>
 		<button
 		class="reset-button"
 		type="button"
@@ -105,9 +105,9 @@
 				<tr>
 					<th>Category</th>
 					<th>Name and Description</th>
-					<th>Effects</th>
 					<th>Level</th>
 					<th>Purchase Conditions</th>
+					<th>Effects</th>
 				</tr>
 			</thead>
 			<tbody id="class-skills-table-body">
@@ -132,7 +132,7 @@
 	</div>
 </div>
 <footer>
-	<p>Dragon's Crown Character Skill Calculator v1.1 &copy; 2024 Carlos Quinto</p>
+	<p>Dragon's Crown Character Skill Calculator v1.3 &copy; 2024 Carlos Quinto</p>
 	<p>Site files and content available under GNU GPLv3; additional terms may apply.</p>
 	<p>Dragon's Crown&trade; and Dragon's Crown&trade; logos are registered trademarks or trademarks of ATLUS (Atlus Co., Ltd., Atlus U.S.A., Inc.).</p>
 	<p>Alice in Wonderland font by Yining Chen.</p>

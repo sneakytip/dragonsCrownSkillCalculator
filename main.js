@@ -549,7 +549,7 @@ function populateSkillTable(source, target, headLabelId) {
 			if (categoryRowspan < 1) {
 				// category cell
 				categoryCell.setAttribute("id", category.name);
-				categoryElemLevelOutput.setAttribute("type","number");
+				categoryElemLevelOutput.setAttribute("type","text");
 				categoryElemLevelOutput.setAttribute("value","0");
 				categoryElemLevelOutput.setAttribute("min","0");
 				categoryElemLevelOutput.setAttribute("readonly","");
@@ -561,7 +561,7 @@ function populateSkillTable(source, target, headLabelId) {
 				skillRow.appendChild(categoryCell);
 			}
 			
-			elementBuilderInnerElements(skillRow,[skillCell,skillEffectsCell,skillLevelCell,skillConditionsCell]);
+			elementBuilderInnerElements(skillRow,[skillCell,skillLevelCell,skillConditionsCell,skillEffectsCell]);
 			categoryRowspan++;
 			targetNewBody.appendChild(skillRow);
 		});
