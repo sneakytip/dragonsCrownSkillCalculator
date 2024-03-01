@@ -63,8 +63,8 @@
 	<div class="characters-selection-body">
 		<label for="characters-list">Your player character: </label>
 	
-		<select	name="characters-list" id="characters-list" onchange="updateSkillsData()">
-			<option disabled selected value style="display:none"> -- select a character -- </option>
+		<select	name="characters-list" id="characters-list" autocomplete="off" onchange="updateSkillsData()">
+			<option disabled selected value> -- select a character -- </option>
 			<option value="fighter">Fighter</option>
 			<option value="amazon">Amazon</option>
 			<option value="dwarf">Dwarf</option>
@@ -86,6 +86,7 @@
 		disabled>
 			Reset Skills
 		</button>
+		<div class="reset-buttons-container-spacer"></div>
 		<button
 		class="reset-button"
 		type="button"

@@ -3,9 +3,246 @@
 	src: url(fonts/alice_in_wonderland.ttf);
 }
 
+@media (max-width: 480px) {
+    html {
+        font-size: 12px;
+    }
+	
+	body {
+		padding: 1px 1px 0 1px;
+	}
+	
+	h1 {
+		margin: 0;
+		padding: 0 0 8px 0;
+		font-size: 2.5em;
+	}
+
+	article {
+		padding-bottom: 18px;
+	}
+	
+	section {
+		width: auto;
+	}
+	
+	select {
+		font-size: 12px;
+	}
+	
+	#tables-container-class {
+		margin-bottom: 1.25em;
+	}
+	
+	.sticky-top {
+		padding: 0.4em 0.6em;
+	}
+	
+	.reset-buttons-container {
+		width: auto;
+	}
+	
+	.reset-button {
+		font-size: 12px;
+	}
+	
+	.main-section {
+		margin: 0.4em 0;
+	}
+	
+	.table-head-label {
+		padding: 0.5em 10%;
+	}
+}
+
+@media (min-width: 480px) {
+    html {
+        font-size: 13px;
+    }
+	
+	body {
+		padding: 1% 1% 0 1%;
+	}
+	
+	h1 {
+		margin: 0;
+		padding: 0 0 24px 0;
+		font-size: 3em;
+	}
+
+	article {
+		padding-bottom: 20px;
+	}
+	
+	section {
+		width: auto;
+	}
+	
+	select {
+		font-size: 13px;
+	}
+	
+	#tables-container-class {
+		margin-bottom: 2em;
+	}
+	
+	.sticky-top {
+		padding: 1em 2em;
+	}
+	
+	.reset-buttons-container {
+		max-width: 400px;
+	}
+	
+	.reset-button {
+		font-size: 13px;
+		padding: 0.5em;
+	}
+	
+	.main-section {
+		margin: 0.8em 0;
+	}
+	
+	.table-head-label {
+		padding: 1em 10%;
+	}
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+	
+	body {
+		padding: 1% 1% 0 1%;
+	}
+	
+	h1 {
+		margin: 0;
+		padding: 0 0 48px 0;
+		font-size: 3.8em;
+	}
+
+	article {
+		padding-bottom: 34px;
+	}
+	
+	section {
+		width: 75%;
+		max-width: 800px;
+	}
+	
+	select {
+		font-size: 14px;
+	}
+	
+	#tables-container-class {
+		margin-bottom: 3em;
+	}
+	
+	.sticky-top {
+		padding: 1em 2em;
+	}
+	
+	.reset-buttons-container {
+		max-width: 480px;
+	}
+	
+	.reset-button {
+		padding: 1em;
+	}
+	
+	.main-section {
+		margin: 1em 0;
+	}
+	
+	.table-head-label {
+		padding: 1.5em 10%;
+	}
+}
+
+@media (min-width: 992px) {
+    html {
+        font-size: 15px;
+    }
+	
+	body {
+		padding: 1% 1% 0 1%;
+	}
+	
+	h1 {
+		margin: 0;
+		padding: 0 0 60px 0;
+		font-size: 4.4em;
+	}
+
+	article {
+		padding-bottom: 40px;
+	}
+	
+	section {
+		width: 75%;
+		max-width: 1000px;
+	}
+	
+	select {
+		font-size: 15px;
+	}
+	
+	#tables-container-class {
+		margin-bottom: 3.5em;
+	}
+	
+	.sticky-top {
+		padding: 2em 3em;
+	}
+	
+	.reset-buttons-container {
+		max-width: 520px;
+	}
+	
+	.main-section {
+		margin: 2em 0;
+	}
+	
+	.table-head-label {
+		padding: 2.5em 10%;
+	}
+}
+
+@media (min-width: 1200px) {
+	body {
+		padding: 1% 1% 0 1%;
+	}
+	
+	section {
+		width: 75%;
+		max-width: 1200px;
+	}
+	
+	#tables-container-class {
+		margin-bottom: 4em;
+	}
+	
+	.sticky-top {
+		padding: 2em 3em;
+	}
+	
+	.reset-buttons-container {
+		max-width: 520px;
+	}
+	
+	.main-section {
+		margin: 2em 0;
+	}
+	
+	.table-head-label {
+		padding: 2.5em 10%;
+	}
+}
+
 body {
 	margin: 0;
-	padding: 1% 1% 0 1%;
 	background-color: black;
 	color: white;
 	font-family: monospace, monospace;
@@ -13,16 +250,10 @@ body {
 
 h1 {
 	font-family: wonderland;
-	font-size: 4em;
-}
-
-article {
-	padding-bottom: 40px;
 }
 
 section {
 	margin: auto;
-	width: 75%;
 	max-width: 1200px;
 	overflow: hidden;
 }
@@ -41,18 +272,9 @@ footer {
 	max-width: 2em;
 }
 
-#class-skills-table-label {
-	margin-top: 50px;
-}
-
-#common-skills-table-label {
-	margin-top: 80px;
-}
-
 .sticky-top {
 	position: -webkit-sticky;
 	position: sticky;
-	padding: 20px 40px;
 	margin: 0;
 	background-color: black;
 	top: 0;
@@ -64,33 +286,38 @@ footer {
 	margin: auto;
 	padding-bottom: 10px;
 	width: fit-content;
+	text-align: center;
 }
 
 .skill-points-container {
 	margin: auto;
 	padding-top: 1em;
 	padding-bottom: 1em;
-	width: fit-content
+	width: fit-content;
 }
 
 .reset-buttons-container {
 	padding: 5px 0 0 0;
 	margin: auto;
-	max-width: 400px;
 	display: flex;
 }
 
 .reset-button {
-	margin: auto;
-	padding: 1em;
-	max-width: 150px;
-	height: 5em;
+	min-width: 1em;
+	min-height: 3em;
 	display: inline-block;
+	flex-basis: 30%;
+	flex-grow: 1;
+}
+
+.reset-buttons-container-spacer {
+	min-width: 1em;
+	display: inline-block;
+	flex-grow: 1;
 }
 
 .main-section {
 	min-height: 600px;
-	margin: 20px 0;
 }
 
 .skills-table-container {
@@ -100,7 +327,6 @@ footer {
 
 .table-head-label {
 	margin: auto;
-	padding: 2em 10%;
 	color: khaki;
 	border: 2px groove darkkhaki;
 	text-align: center;
