@@ -3,6 +3,11 @@
 	src: url(fonts/alice_in_wonderland.ttf);
 }
 
+@font-face {
+	font-family: iconic-psx;
+	src: url(fonts/iconic_psx.ttf);
+}
+
 @media (max-width: 480px) {
     html {
         font-size: 12px;
