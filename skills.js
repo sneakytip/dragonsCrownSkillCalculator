@@ -4726,7 +4726,7 @@ const skillsSorceress = new SkillType(
 						new SkillTier(
 							3,
 							"Number of uses: 9" + spacerLarge + "Range 3",
-							15,
+							5,
 							31,
 							3,
 							[""]
