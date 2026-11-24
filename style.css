@@ -10,7 +10,7 @@
 
 @media (max-width: 480px) {
     html {
-        font-size: 12px;
+        font-size: 9px;
     }
 	
 	body {
@@ -20,7 +20,7 @@
 	h1 {
 		margin: 0;
 		padding: 0 0 8px 0;
-		font-size: 2.5em;
+		font-size: 2.0em;
 	}
 
 	article {
@@ -32,7 +32,7 @@
 	}
 	
 	select {
-		font-size: 12px;
+		font-size: 9px;
 	}
 	
 	.sticky-top {
@@ -44,7 +44,7 @@
 	}
 	
 	.reset-button {
-		font-size: 12px;
+		font-size: 9px;
 	}
 	
 	.main-section {
@@ -62,7 +62,7 @@
 
 @media (min-width: 480px) {
     html {
-        font-size: 13px;
+        font-size: 11px;
     }
 	
 	body {
@@ -72,7 +72,7 @@
 	h1 {
 		margin: 0;
 		padding: 0 0 24px 0;
-		font-size: 3em;
+		font-size: 2.5em;
 	}
 
 	article {
@@ -84,7 +84,7 @@
 	}
 	
 	select {
-		font-size: 13px;
+		font-size: 11px;
 	}
 	
 	.sticky-top {
@@ -96,7 +96,7 @@
 	}
 	
 	.reset-button {
-		font-size: 13px;
+		font-size: 11px;
 		padding: 4px;
 	}
 	
@@ -115,7 +115,7 @@
 
 @media (min-width: 768px) {
     html {
-        font-size: 14px;
+        font-size: 12px;
     }
 	
 	body {
@@ -125,7 +125,7 @@
 	h1 {
 		margin: 0;
 		padding: 0 0 48px 0;
-		font-size: 3.8em;
+		font-size: 3.0em;
 	}
 
 	article {
@@ -138,7 +138,7 @@
 	}
 	
 	select {
-		font-size: 14px;
+		font-size: 12px;
 	}
 	
 	.sticky-top {
@@ -178,7 +178,7 @@
 	h1 {
 		margin: 0;
 		padding: 0 0 60px 0;
-		font-size: 4.4em;
+		font-size: 3.3em;
 	}
 
 	article {
@@ -327,7 +327,9 @@ footer {
 
 .skills-table-container {
 	display: none;
-	overflow: auto;
+	margin: 0;
+	padding: 0;
+	overflow-x: auto;
 }
 
 .table-head-label {
@@ -343,8 +345,8 @@ footer {
 	color: white;
 	border: none;
 	border-collapse: collapse;
-	border-spacing: 10px, 0px;
-	margin: 16px auto;
+	border-spacing: 8px, 0px;
+	margin: 12px auto;
 }
 
 .skills-table thead {
@@ -352,13 +354,13 @@ footer {
 }
 
 .skills-table thead tr th {
-	padding: 10px 10px 10px 10px;
+	padding: 8px 8px 8px 8px;
 	text-align: left;
 }
 
 .skills-table tbody tr td {
 	max-width: 600px;
-	padding: 10px 50px 10px 10px;
+	padding: 8px 20px 8px 8px;
 	white-space: pre-line;
 	border-top: 2px solid gray;
 	border-bottom: 2px solid gray;
@@ -373,11 +375,11 @@ footer {
 }
 
 .skills-table-wide-cell {
-	min-width: 16em;
+	min-width: 14em;
 }
 
 .skills-table-widest-cell {
-	min-width: 25em;
+	min-width: 20em;
 }
 
 .table-input-non-interactable {
@@ -398,6 +400,7 @@ footer {
 	all: unset;
 	display: block;
 	width: auto;
+	margin: 0 auto 0 auto;
 	text-align: center;
 }
 
